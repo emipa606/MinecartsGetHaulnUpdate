@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MGHU.DumpMode>Dump Mode</MGHU.DumpMode>
+  <MGHU.LoadMode>Load Mode</MGHU.LoadMode>
+  <MGHU.Turn>Turn: </MGHU.Turn>
+  <MGHU.Right>Right</MGHU.Right>
+  <MGHU.Left>Left</MGHU.Left>
+  <MGHU.Acceleration>Acceleration</MGHU.Acceleration>
+  <MGHU.Power>Power</MGHU.Power>
+  <MGHU.Blocked>Blocked</MGHU.Blocked>
+  <MGHU.NoRail>No rail</MGHU.NoRail>
+  <MGHU.TotalMass>Mass of loaded contents: {0}kg</MGHU.TotalMass>
+  <MGHU.PathNotClear>Path not clear</MGHU.PathNotClear>
+  <MGHU.SpeedStat>Speed</MGHU.SpeedStat>
+  <MGHU.Throttle>Throttle</MGHU.Throttle>
+  <MGHU.ThrottleTT>Toggle minecart throttle</MGHU.ThrottleTT>
+  <MGHU.FlickingTo> (Flicking to {0}...)</MGHU.FlickingTo>
+  <MGHU.Launch>Launch</MGHU.Launch>
+  <MGHU.Speed>Speed: {0}</MGHU.Speed>
+  <MGHU.SpeedInspect>Speed: {0}c</MGHU.SpeedInspect>
+  <MGHU.Mass>Mass: {0} ({1})</MGHU.Mass>
+  <MGHU.LaunchTT>Launch Minecart</MGHU.LaunchTT>
+</LanguageData>

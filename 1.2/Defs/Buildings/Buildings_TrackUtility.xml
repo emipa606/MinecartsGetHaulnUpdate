@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <thingClass>Minecart.Building_RailSwitch</thingClass>
+    <defName>RailSwitch</defName>
+    <label>rail switch</label>
+    <rotatable>false</rotatable>
+    <description>A switch which changes the direction of incoming track vehicles.</description>
+    <graphicData>
+      <texPath>Things/Building/Misc/PartySpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <statBases>
+      <WorkToBuild>100</WorkToBuild>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>15</costStuffCount>
+    <size>(1,1)</size>
+    <designationCategory>Rail</designationCategory>
+    <passability>Standable</passability>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>false</isInert>
+      <isEdifice>false</isEdifice>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+    </comps>
+    <placeWorkers>
+      <li>Minecart.PlaceWorker_TrackUtility</li>
+    </placeWorkers>
+  </ThingDef>
+  <ThingDef ParentName="BuildingBase">
+    <thingClass>Minecart.Building_RailDump</thingClass>
+    <defName>RailDump</defName>
+    <label>rail dump</label>
+    <rotatable>false</rotatable>
+    <tickerType>Normal</tickerType>
+    <description>A point which causes passing track vehicles to eject their cargo immediately.</description>
+    <graphicData>
+      <texPath>Things/Building/Misc/PartySpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <statBases>
+      <WorkToBuild>100</WorkToBuild>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>20</costStuffCount>
+    <size>(1,1)</size>
+    <designationCategory>Rail</designationCategory>
+    <passability>Standable</passability>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>false</isInert>
+      <isEdifice>false</isEdifice>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+    </comps>
+    <placeWorkers>
+      <li>Minecart.PlaceWorker_TrackUtility</li>
+    </placeWorkers>
+  </ThingDef>
+  <ThingDef Class="Minecart.ThingDef_RailBoost" ParentName="BuildingBase">
+    <thingClass>Minecart.Building_RailBoost</thingClass>
+    <defName>RailBoost</defName>
+    <label>rail boost</label>
+    <description>Spinning flywheels that latch onto a passing rail vehicle to accelerate them to full speed again.</description>
+    <rotatable>false</rotatable>
+    <tickerType>Normal</tickerType>
+    <pushSpeed>10.0</pushSpeed>
+    <pushAccel>0.4</pushAccel>
+    <pushPower>10.0</pushPower>
+    <graphicData>
+      <texPath>Things/Building/Misc/PartySpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <statBases>
+      <WorkToBuild>100</WorkToBuild>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>5</costStuffCount>
+    <costList>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <size>(1,1)</size>
+    <designationCategory>Rail</designationCategory>
+    <passability>Standable</passability>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>false</isInert>
+      <isEdifice>false</isEdifice>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+    <comps>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>20</basePowerConsumption>
+      </li>
+    </comps>
+    <researchPrerequisites>
+      <li>Electricity</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>3</constructionSkillPrerequisite>
+    <placeWorkers>
+      <li>Minecart.PlaceWorker_TrackUtility</li>
+    </placeWorkers>
+  </ThingDef>
+</Defs>

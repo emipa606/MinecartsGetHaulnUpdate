@@ -1,0 +1,46 @@
+=== 0.1 ===
+
++ Initial release
+
+=== 0.2 ===
+
+% Changed the walking speed of rails from 6% to 40%
+
+% Changed the cost of booster rail from 60x wood/stone/metal to 5x metal and 1x component
+% Changed the cost of switch rail from 60x wood/stone/metal to 20x metal
+% Changed the cost of dump rail from 60x wood/stone/metal to 15x metal
+
+% Doubled the launch speed of minecarts
+% Trippled the launch speed of rollers
+
+? Minecart physics are performed in half speed, to make them seem smoother, and to reduce the floating point rounding errors
+
++ Acceleration : Minecarts no longer instantly accelerate to speed, and will need to accelerate to their max speed
++ Mass : Minecarts now have a mass value which is used in their acceleration calculations. Mass is impacted by the raw weight of the minecart plus the cargo they are hauling
+
++ Coupling : Minecarts built or installed facing into each other will become coupled, and will always follow the lead minecart. The combined mass of the coupled minecart is still used in the acceleration calculations.
++ Autoloading : Rail dumps can be toggled to load cargo instead of drop it. When set to loading, dumps will load all items immediately adjacent to it that are in a valid stockpile into passing minecarts. Only materials immediately adjacent to rail dumps will be loaded (so that you can't make a mile long stockpile to teleport materials across the map).
+
++ New minecart textures by Mic
++ Minecarts can now be properly pushed by pawns. Pawns can be directly commanded to push a minecart. Select a pawn, then right click a minecart to show it's context menu, then select the "launch minecart" job.
+
+- Removed minecart push gizmo
+
+? Minecarts now rebound off of non-standable tiles (workbenches, rocks)
+
+? Moved the functionality of the boost rail and the dump rail to their respective buildings (previously the minecart itself handled these functions)
+? Major code cleanup
+
+=== 0.2.1 ===
+
+% Increased construction skill requirement for tracks and boosters
+% Emphasised the new load mode of rail dumps
+% Trains launched on corners should now behave properly
+
+? All track utilities (such as switches, boosters, dumps) are no longer considered edificies; They can now be built under minecarts and other track utilities.
+? Minecarts will no longer be uninstalled when a save is reloaded and the minecart is atop a track utility.
+
+? Rails can now be built on bridges
+? Bridges are no longer considered rails
+? Pawns will no longer idle on rails
+

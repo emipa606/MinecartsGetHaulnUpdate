@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TerrainDef>
+    <defName>Rail</defName>
+    <label>rail</label>
+    <renderPrecedence>240</renderPrecedence>
+    <description>Common rails. Good for minecarts.</description>
+    <texturePath>Terrain/Surfaces/GenericFloorTile</texturePath>
+    <color>(0.369, 0.369, 0.369)</color>
+    <pathCost>20</pathCost>
+    <statBases>
+      <Beauty>-1</Beauty>
+    </statBases>
+    <fertility>0</fertility>
+    <constructEffect>ConstructDirt</constructEffect>
+  </TerrainDef>
+</Defs>

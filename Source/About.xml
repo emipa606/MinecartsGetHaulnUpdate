@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Minecarts - Get Haul'n Update</name>
+  <packageId>Compilatron.Minecarts</packageId>
+  <author>Compilatron,Ogliss,Parad0x</author>
+  <description>Move stuff from A to B with minecarts! Currently an early build, I hope to add more features and improvements later.
+	
+Get Haul'n update includes revamped vehicle physics, connectable minecart trains and automatic pickup and dropoff points, along with general balance changes and a glossy new look.
+	
+Credit to Mic for the minecart textures; They did a great job :D
+	
+Also a special thanks to everyone in the RimWorld discord server who had to go through the agonizing pain of explaining to me how to mod RimWorld.
+
+Update as of 2021, Fixed by Ogliss and uploaded by Parad0x. New content planned partially based off old plans.
+
+Credits to Compilatron for allowing this and original creation of the mod.</description>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+    <li>1.2</li>
+    <li>1.3</li>
+  </supportedVersions>
+</ModMetaData>

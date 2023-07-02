@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>ThingRail</defName>
+    <label>rail</label>
+    <description>Common rails. Good for minecarts, but easy to trip over.</description>
+    <pathCost>50</pathCost>
+    <graphicData>
+      <texPath>Things/Building/Rail/Rails/Rails</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <linkType>Transmitter</linkType>
+      <linkFlags>
+        <li>Custom4</li>
+      </linkFlags>
+      <damageData>
+        <rect>(0,0.35,1,0.3)</rect>
+      </damageData>
+    </graphicData>
+    <uiIconPath>Things/Building/Rail/Rails/Rails_ScreenIcon</uiIconPath>
+    <uiIconScale>0.7</uiIconScale>
+    <altitudeLayer>LowPlant</altitudeLayer>
+    <statBases>
+      <WorkToBuild>100</WorkToBuild>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>2</costStuffCount>
+    <size>(1,1)</size>
+    <designationCategory>Rail</designationCategory>
+    <passability>Standable</passability>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <building>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Rail/Rails/Rails_Blueprint</texPath>
+      </blueprintGraphicData>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>true</isInert>
+      <isEdifice>false</isEdifice>
+      <expandHomeArea>false</expandHomeArea>
+    </building>
+    <fertility>0</fertility>
+    <placingDraggableDimensions>1</placingDraggableDimensions>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <researchPrerequisites>
+      <li>P_MedievalRails</li>
+    </researchPrerequisites>
+    <costList>
+      <WoodLog>2</WoodLog>
+    </costList>
+  </ThingDef>
+</Defs>

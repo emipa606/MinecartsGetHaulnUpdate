@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef Class="Minecart.ThingDef_Minecart" Name="MinecartBase" ParentName="BuildingBase" Abstract="True">
+    <thingCategories>
+      <li>BuildingsProduction</li>
+    </thingCategories>
+    <size>(1,1)</size>
+    <statBases>
+      <Mass>10</Mass>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <rotatable>true</rotatable>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Building</altitudeLayer>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <castEdgeShadows>false</castEdgeShadows>
+    <designationCategory>Rail</designationCategory>
+    <thingClass>Minecart.Building_Minecart</thingClass>
+    <passability>PassThroughOnly</passability>
+    <pathCost>150</pathCost>
+    <fillPercent>1.0</fillPercent>
+    <building>
+      <expandHomeArea>false</expandHomeArea>
+      <allowAutoroof>false</allowAutoroof>
+    </building>
+    <placeWorkers>
+      <li>Minecart.PlaceWorker_Minecart</li>
+    </placeWorkers>
+  </ThingDef>
+  <ThingDef Class="Minecart.ThingDef_Minecart" ParentName="MinecartBase">
+    <defName>Minecart</defName>
+    <label>minecart</label>
+    <description>A lightweight track vechile which can be loaded with items, colonists and animals for transportation around a colony. Must be placed atop tracks to function.</description>
+    <graphicData>
+      <texPath>Things/Building/Rail/Minecart/minecart</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1.5,1.5)</drawSize>
+    </graphicData>
+    <frictionCoef>0.995</frictionCoef>
+    <launchSpeed>5.0</launchSpeed>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>50</costStuffCount>
+    <comps>
+      <li Class="CompProperties_Transporter">
+        <restEffectiveness>0.8</restEffectiveness>
+        <massCapacity>80</massCapacity>
+      </li>
+    </comps>
+    <uiIconScale>0.8</uiIconScale>
+    <inspectorTabs>
+      <li>ITab_ContentsTransporter</li>
+    </inspectorTabs>
+  </ThingDef>
+  <!-- <ThingDef Class="Minecart.ThingDef_Minecart" ParentName="MinecartBase">
+		<defName>SteamMinecart</defName>
+		<label>steam minecart</label>
+		<description>A lightweight track vechile which can be powered to provide continuous thrust to a train of minecarts, when powered by wood. Must be placed atop tracks to function.
+		
+(Due to a bug, you will need to use the rail load to add fuel to steam minecarts. I have absolutely no clue why the game won't let you load refuelable minecarts, but I'll keep trying to find a solution)</description>
+		<graphicData>
+			<texPath>Things/Building/Rail/SteamMinecart/minecart</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(1.5,1.5)</drawSize>
+		</graphicData>
+		<frictionCoef>0.995</frictionCoef>
+		<launchSpeed>5.0</launchSpeed>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>50</costStuffCount>
+		<costList>
+			<Steel>20</Steel>
+			<WoodLog>50</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Breakdownable"/>
+			<li Class="Minecart.CompProperties_MinecartPropulsion">
+				<pushSpeed>10.0</pushSpeed>
+				<pushAccel>0.1</pushAccel>
+				<pushPower>4.0</pushPower>
+			</li>
+			<li Class="CompProperties_Transporter">
+				<restEffectiveness>0</restEffectiveness>
+				<massCapacity>20</massCapacity>
+			</li>
+			<li Class="CompProperties_Refuelable">
+				<fuelConsumptionRate>22.0</fuelConsumptionRate>
+				<fuelCapacity>20.0</fuelCapacity>
+				<fuelFilter>
+				  <thingDefs>
+					<li>WoodLog</li>
+				  </thingDefs>
+				</fuelFilter>
+				<drawOutOfFuelOverlay>false</drawOutOfFuelOverlay>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+			</li>
+		</comps>
+		<uiIconScale>0.8</uiIconScale>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+	</ThingDef> -->
+</Defs>

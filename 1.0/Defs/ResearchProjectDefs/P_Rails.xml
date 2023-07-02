@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ResearchProjectDef Name="MedievalRails" Abstract="true">
+    <tab>Main</tab>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>0</researchViewX>
+  </ResearchProjectDef>
+  <!--Medieval-->
+  <ResearchProjectDef ParentName="MedievalRails">
+    <defName>P_MedievalRails</defName>
+    <label>Early Rail Systems</label>
+    <description>Early pre-industrial railway systems.</description>
+    <baseCost>400</baseCost>
+    <prerequisites>
+      <li>Smithing</li>
+    </prerequisites>
+    <researchViewY>4.9</researchViewY>
+  </ResearchProjectDef>
+  <ResearchProjectDef Name="IndustrialRails" Abstract="true">
+    <tab>Main</tab>
+    <researchViewX>1.0</researchViewX>
+  </ResearchProjectDef>
+  <!--Industrial-->
+  <ResearchProjectDef ParentName="IndustrialRails">
+    <defName>P_IndustrialRails</defName>
+    <label>Industrial Rail Systems</label>
+    <description>Simple powered upgrades to improve the efficiency of a rail network.</description>
+    <baseCost>400</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>P_MedievalRails</li>
+      <li>Machining</li>
+      <li>Electricity</li>
+    </prerequisites>
+    <researchViewY>4.9</researchViewY>
+  </ResearchProjectDef>
+</Defs>
