@@ -1,5 +1,8 @@
 # Changelog for MinecartsGetHaulnUpdate
 
+1.4.1 - Moved the research-projects positions for better readability
+
+
 1.4.0 - First publish.
 Used DeepL to update translations for ChineseSimplified, French, German
 

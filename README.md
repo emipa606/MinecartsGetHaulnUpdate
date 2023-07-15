@@ -11,6 +11,12 @@ Update of Compilatron,Ogliss,Parad0xs mod https://steamcommunity.com/sharedfiles
 
 Move stuff from A to B with minecarts! Currently an early build, I hope to add more features and improvements later.
 	
+-- HOW TO USE --
+
+Minecarts are buildings which can be built from the "rails" tab of your architecture menu. Minecarts need rails to function, which can be built in 1 tile wide lines, and with corners.
+Minecarts must be given a push to be launched. To launch a minecart, select a nearby pawn, then right click the minecart to open up it's context menu. Then, select the "launch minecart" button. The pawn will walk to the minecart and give it a push to send it on it's way.
+Minecarts can carry items in them like transport pods, and can be pushed after the intended items have been loaded.
+
 Get Haul'n update includes revamped vehicle physics, connectable minecart trains and automatic pickup and dropoff points, along with general balance changes and a glossy new look.
 	
 Credit to Mic for the minecart textures; They did a great job :D
@@ -35,3 +41,4 @@ Free for anyone to update, take over or otherwise maintain.
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2998019751]Last updated 2023-07-15
