@@ -81,11 +81,10 @@ public class CompMinecartPropulsion : ThingComp
             && transporter.innerContainer.Any(t => refuelable.Props.fuelFilter.Allows(t)))
         {
             refuelable.Refuel(
-                new List<Thing>
-                {
-                    transporter.innerContainer.First(
-                        t => refuelable.Props.fuelFilter.Allows(t))
-                });
+            [
+                transporter.innerContainer.First(
+                    t => refuelable.Props.fuelFilter.Allows(t))
+            ]);
         }
     }
 }

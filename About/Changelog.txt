@@ -1,5 +1,10 @@
 # Changelog for MinecartsGetHaulnUpdate
 
+1.4.2 - Carts should try to drop things next to the track when dumping
+Carts will not be deconstructed if travelling over a blueprint of a track utility
+Fixed redundant research requirements
+
+
 1.4.1 - Moved the research-projects positions for better readability
 
 

@@ -15,7 +15,7 @@
       <li>Smithing</li>
     </prerequisites>
     <researchViewX>2.00</researchViewX>
-    <researchViewY>4.25</researchViewY>
+    <researchViewY>5.45</researchViewY>
   </ResearchProjectDef>
   <ResearchProjectDef Name="IndustrialRails" Abstract="true">
     <tab>Main</tab>
@@ -33,7 +33,7 @@
       <li>Machining</li>
       <li>Electricity</li>
     </prerequisites>
-    <researchViewX>6.00</researchViewX>
-    <researchViewY>4.20</researchViewY>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>5.40</researchViewY>
   </ResearchProjectDef>
 </Defs>

@@ -34,8 +34,33 @@ public class Building_RailDump : Building
         {
             if (Mode)
             {
-                compTransporter.innerContainer.TryDropAll(Position, Map, ThingPlaceMode.Near);
-                compTransporter.CancelLoad();
+                if (compTransporter.innerContainer.Any)
+                {
+                    var validCells = this.CellsAdjacent8WayAndInside().Where(vec3 =>
+                        vec3 != Position && vec3.GetFirstBuilding(Map)?.def != ThingDefOf.ThingRail);
+
+                    if (validCells.Any())
+                    {
+                        foreach (var intVec3 in validCells.InRandomOrder())
+                        {
+                            if (!compTransporter.innerContainer.Any)
+                            {
+                                break;
+                            }
+
+                            var thing = compTransporter.innerContainer.RandomElement();
+                            compTransporter.innerContainer.TryDrop(thing, intVec3, Map, ThingPlaceMode.Direct,
+                                thing.stackCount, out _, null, vec3 => validCells.Contains(vec3));
+                        }
+                    }
+
+                    if (compTransporter.innerContainer.Any)
+                    {
+                        compTransporter.innerContainer.TryDropAll(Position, Map, ThingPlaceMode.Near);
+                    }
+
+                    compTransporter.CancelLoad();
+                }
             }
             else
             {
@@ -66,7 +91,7 @@ public class Building_RailDump : Building
             if (thing != null
                 && thing.IsInValidStorage())
             {
-                compRefuelable.Refuel(new List<Thing> { thing });
+                compRefuelable.Refuel([thing]);
             }
         }
     }
