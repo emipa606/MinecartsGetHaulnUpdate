@@ -21,4 +21,8 @@
   <MGHU.SpeedInspect>速度：{0}c</MGHU.SpeedInspect>
   <MGHU.Mass>质量：{0} ({1})</MGHU.Mass>
   <MGHU.LaunchTT>启动微型车</MGHU.LaunchTT>
+  <MGHU.DumpAll>全部倾倒</MGHU.DumpAll>
+  <MGHU.DumpAllDesc>倾倒所有货物，如果轨道旁没有空闲空间，可在轨道上倾倒货物</MGHU.DumpAllDesc>
+  <MGHU.DumpFree>自由空间</MGHU.DumpFree>
+  <MGHU.DumpFreeDesc>将货物倾倒在附近的空位上，如果没有足够的空位，货物将留在小车中</MGHU.DumpFreeDesc>
 </LanguageData>

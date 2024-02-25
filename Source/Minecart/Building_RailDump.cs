@@ -7,59 +7,89 @@ namespace Minecart;
 
 public class Building_RailDump : Building
 {
-    public bool Mode { get; set; } = true;
+    private bool dumpMode = true;
+    private bool mode = true;
+
+    public bool Mode
+    {
+        get => mode;
+        set => mode = value;
+    }
+
+    public bool DumpMode
+    {
+        get => dumpMode;
+        set => dumpMode = value;
+    }
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        var mode = new Command_Toggle
+        yield return new Command_Toggle
         {
             icon = TexCommand.Install,
             defaultLabel = Mode ? "MGHU.DumpMode".Translate() : "MGHU.LoadMode".Translate(),
             isActive = () => Mode,
             toggleAction = delegate { Mode = !Mode; }
         };
-        yield return mode;
+
+        if (!Mode)
+        {
+            yield break;
+        }
+
+        yield return new Command_Toggle
+        {
+            icon = TexButton.SelectOverlappingNext,
+            defaultLabel = DumpMode ? "MGHU.DumpAll".Translate() : "MGHU.DumpFree".Translate(),
+            defaultDesc = DumpMode ? "MGHU.DumpAllDesc".Translate() : "MGHU.DumpFreeDesc".Translate(),
+            isActive = () => DumpMode,
+            toggleAction = delegate { DumpMode = !DumpMode; }
+        };
     }
 
     public override void Tick()
     {
         var minecart = Position.GetFirstThing<Building_Minecart>(Map);
-        if (minecart == null)
-        {
-            return;
-        }
 
-        var compTransporter = minecart.GetComp<CompTransporter>();
+        var compTransporter = minecart?.GetComp<CompTransporter>();
         if (compTransporter != null)
         {
             if (Mode)
             {
-                if (compTransporter.innerContainer.Any)
+                var transporters = compTransporter.TransportersInGroup(Map);
+                if (transporters?.Any(transporter => transporter.innerContainer.Any) == true)
                 {
                     var validCells = this.CellsAdjacent8WayAndInside().Where(vec3 =>
-                        vec3 != Position && vec3.GetFirstBuilding(Map)?.def != ThingDefOf.ThingRail);
-
-                    if (validCells.Any())
+                        vec3 != Position && vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                        !vec3.GetThingList(Map).Any(thing =>
+                            thing.def.category == ThingCategory.Item && thing.def.EverHaulable)).ToList();
+                    var currentCell = 0;
+                    foreach (var transporter in transporters)
                     {
-                        foreach (var intVec3 in validCells.InRandomOrder())
+                        if (!validCells.Any())
                         {
-                            if (!compTransporter.innerContainer.Any)
+                            break;
+                        }
+
+                        for (var index = 0; index < transporter.innerContainer.Count; index++)
+                        {
+                            if (validCells.Count <= currentCell)
                             {
                                 break;
                             }
 
-                            var thing = compTransporter.innerContainer.RandomElement();
-                            compTransporter.innerContainer.TryDrop(thing, intVec3, Map, ThingPlaceMode.Direct,
-                                thing.stackCount, out _, null, vec3 => validCells.Contains(vec3));
+                            var thing = transporter.innerContainer[index];
+                            transporter.innerContainer.TryDrop(thing, validCells[currentCell], Map,
+                                ThingPlaceMode.Direct,
+                                thing.stackCount, out _);
+                            currentCell++;
                         }
                     }
 
-                    if (compTransporter.innerContainer.Any)
+                    if (!transporters.Any(transporter => transporter.innerContainer.Any) || DumpMode)
                     {
-                        compTransporter.innerContainer.TryDropAll(Position, Map, ThingPlaceMode.Near);
+                        compTransporter.CancelLoad();
                     }
-
-                    compTransporter.CancelLoad();
                 }
             }
             else
@@ -79,7 +109,7 @@ public class Building_RailDump : Building
             }
         }
 
-        var compRefuelable = minecart.GetComp<CompRefuelable>();
+        var compRefuelable = minecart?.GetComp<CompRefuelable>();
         if (compRefuelable == null || Mode || !(compRefuelable.TargetFuelLevel - compRefuelable.Fuel > 1f))
         {
             return;
@@ -94,5 +124,12 @@ public class Building_RailDump : Building
                 compRefuelable.Refuel([thing]);
             }
         }
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref mode, "mode", true);
+        Scribe_Values.Look(ref dumpMode, "dumpMode", true);
     }
 }

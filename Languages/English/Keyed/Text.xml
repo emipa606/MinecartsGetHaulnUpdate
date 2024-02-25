@@ -2,6 +2,10 @@
 <LanguageData>
   <MGHU.DumpMode>Dump Mode</MGHU.DumpMode>
   <MGHU.LoadMode>Load Mode</MGHU.LoadMode>
+  <MGHU.DumpAll>Dump All</MGHU.DumpAll>
+  <MGHU.DumpAllDesc>Dumps all cargo, may dump cargo on the track if there is no free space next to the track</MGHU.DumpAllDesc>
+  <MGHU.DumpFree>Free Space</MGHU.DumpFree>
+  <MGHU.DumpFreeDesc>Will dump cargo in nearby free spaces, if there are not enough free spaces, cargo will remain in the cart</MGHU.DumpFreeDesc>
   <MGHU.Turn>Turn: </MGHU.Turn>
   <MGHU.Right>Right</MGHU.Right>
   <MGHU.Left>Left</MGHU.Left>

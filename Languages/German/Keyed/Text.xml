@@ -21,4 +21,8 @@
   <MGHU.SpeedInspect>Geschwindigkeit: {0}c</MGHU.SpeedInspect>
   <MGHU.Mass>Masse: {0} ({1})</MGHU.Mass>
   <MGHU.LaunchTT>Minecart starten</MGHU.LaunchTT>
+  <MGHU.DumpAll>Alles wegwerfen</MGHU.DumpAll>
+  <MGHU.DumpAllDesc>Kippt alle Ladung ab, kann Ladung auf das Gleis kippen, wenn neben dem Gleis kein Platz frei ist</MGHU.DumpAllDesc>
+  <MGHU.DumpFree>Freiraum</MGHU.DumpFree>
+  <MGHU.DumpFreeDesc>Kippt die Ladung auf freie Plätze in der Nähe, wenn es nicht genug freie Plätze gibt, bleibt die Ladung im Wagen.</MGHU.DumpFreeDesc>
 </LanguageData>

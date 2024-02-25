@@ -1,5 +1,9 @@
 # Changelog for MinecartsGetHaulnUpdate
 
+1.4.3 - Added option to only unload on free space. Fixed unloading from whole trains.
+Used DeepL to update translations for ChineseSimplified, French, German
+
+
 1.4.2 - Carts should try to drop things next to the track when dumping
 Carts will not be deconstructed if travelling over a blueprint of a track utility
 Fixed redundant research requirements

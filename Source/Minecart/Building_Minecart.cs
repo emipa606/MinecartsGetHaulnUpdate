@@ -38,8 +38,7 @@ public class Building_Minecart : Building
     {
         get
         {
-            var minecarts = new List<Building_Minecart>();
-            minecarts.Add(headMinecart);
+            var minecarts = new List<Building_Minecart> { headMinecart };
             while (true)
             {
                 if (minecarts.Last().trailingMinecart == null)
