@@ -71,9 +71,9 @@
       <isEdifice>false</isEdifice>
       <expandHomeArea>false</expandHomeArea>
     </building>
-    <comps>
-      <li Class="CompProperties_Flickable" />
-    </comps>
+    <!-- <comps> -->
+    <!-- <li Class="CompProperties_Flickable" /> -->
+    <!-- </comps> -->
     <placeWorkers>
       <li>Minecart.PlaceWorker_TrackUtility</li>
     </placeWorkers>

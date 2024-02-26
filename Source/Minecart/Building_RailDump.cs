@@ -24,6 +24,11 @@ public class Building_RailDump : Building
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
+        foreach (var gizmo in base.GetGizmos())
+        {
+            yield return gizmo;
+        }
+
         yield return new Command_Toggle
         {
             icon = TexCommand.Install,
@@ -56,37 +61,55 @@ public class Building_RailDump : Building
         {
             if (Mode)
             {
-                var transporters = compTransporter.TransportersInGroup(Map);
-                if (transporters?.Any(transporter => transporter.innerContainer.Any) == true)
+                if (compTransporter.innerContainer.Any)
                 {
                     var validCells = this.CellsAdjacent8WayAndInside().Where(vec3 =>
-                        vec3 != Position && vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
-                        !vec3.GetThingList(Map).Any(thing =>
-                            thing.def.category == ThingCategory.Item && thing.def.EverHaulable)).ToList();
-                    var currentCell = 0;
-                    foreach (var transporter in transporters)
+                        vec3 != Position && vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null);
+                    for (var index = 0; index < compTransporter.innerContainer.Count; index++)
                     {
-                        if (!validCells.Any())
+                        var thing = compTransporter.innerContainer[index];
+                        var storageCell = validCells.FirstOrDefault(vec3 => vec3.IsValidStorageFor(Map, thing));
+
+                        if (storageCell == default)
                         {
-                            break;
+                            continue;
                         }
 
-                        for (var index = 0; index < transporter.innerContainer.Count; index++)
-                        {
-                            if (validCells.Count <= currentCell)
-                            {
-                                break;
-                            }
+                        compTransporter.innerContainer.TryDrop(thing, storageCell, Map,
+                            ThingPlaceMode.Direct, thing.stackCount, out _);
+                    }
 
-                            var thing = transporter.innerContainer[index];
-                            transporter.innerContainer.TryDrop(thing, validCells[currentCell], Map,
-                                ThingPlaceMode.Direct,
-                                thing.stackCount, out _);
-                            currentCell++;
+
+                    if (compTransporter.innerContainer.Any)
+                    {
+                        var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
+                            thing.def.category == ThingCategory.Item && thing.def.EverHaulable)).ToList();
+                        var currentCell = 0;
+                        if (emptyCells.Any())
+                        {
+                            for (var index = 0; index < compTransporter.innerContainer.Count; index++)
+                            {
+                                if (emptyCells.Count <= currentCell)
+                                {
+                                    break;
+                                }
+
+                                var thing = compTransporter.innerContainer[index];
+                                compTransporter.innerContainer.TryDrop(thing, emptyCells[currentCell], Map,
+                                    ThingPlaceMode.Direct,
+                                    thing.stackCount, out _);
+                                currentCell++;
+                            }
                         }
                     }
 
-                    if (!transporters.Any(transporter => transporter.innerContainer.Any) || DumpMode)
+                    if (compTransporter.innerContainer.Any && DumpMode)
+                    {
+                        compTransporter.innerContainer.TryDropAll(Position, Map, ThingPlaceMode.Near);
+                    }
+
+                    var transporters = compTransporter.TransportersInGroup(Map);
+                    if (transporters == null || !transporters.Any(transporter => transporter.innerContainer.Any))
                     {
                         compTransporter.CancelLoad();
                     }
