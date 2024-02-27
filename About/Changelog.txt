@@ -1,5 +1,9 @@
 # Changelog for MinecartsGetHaulnUpdate
 
+1.4.5 - Added option to only unload in valid storages
+Used DeepL to update translations for ChineseSimplified, French, German
+
+
 1.4.4 - Carts will not drop items unless they are on a dump-spot. Will try to fill up storages first. Will empty auto-picked up items as well.
 
 

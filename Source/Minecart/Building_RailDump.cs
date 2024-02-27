@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Minecart;
@@ -8,18 +9,70 @@ namespace Minecart;
 public class Building_RailDump : Building
 {
     private bool dumpMode = true;
+    private bool freeSpots;
     private bool mode = true;
+    private bool storages;
 
-    public bool Mode
+    public bool IsInDumpMode
     {
         get => mode;
         set => mode = value;
     }
 
-    public bool DumpMode
+    public bool WillDumpWhereever
     {
         get => dumpMode;
-        set => dumpMode = value;
+        set
+        {
+            dumpMode = value;
+            if (!value)
+            {
+                return;
+            }
+
+            freeSpots = false;
+            storages = false;
+        }
+    }
+
+    public bool WillDumpOnFreeSpots
+    {
+        get
+        {
+            if (!freeSpots && !dumpMode && !storages)
+            {
+                freeSpots = true;
+            }
+
+            return freeSpots;
+        }
+        set
+        {
+            freeSpots = value;
+            if (!value)
+            {
+                return;
+            }
+
+            dumpMode = false;
+            storages = false;
+        }
+    }
+
+    public bool WillDumpInStorages
+    {
+        get => storages;
+        set
+        {
+            storages = value;
+            if (!value)
+            {
+                return;
+            }
+
+            freeSpots = false;
+            dumpMode = false;
+        }
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
@@ -32,12 +85,12 @@ public class Building_RailDump : Building
         yield return new Command_Toggle
         {
             icon = TexCommand.Install,
-            defaultLabel = Mode ? "MGHU.DumpMode".Translate() : "MGHU.LoadMode".Translate(),
-            isActive = () => Mode,
-            toggleAction = delegate { Mode = !Mode; }
+            defaultLabel = IsInDumpMode ? "MGHU.DumpMode".Translate() : "MGHU.LoadMode".Translate(),
+            isActive = () => IsInDumpMode,
+            toggleAction = delegate { IsInDumpMode = !IsInDumpMode; }
         };
 
-        if (!Mode)
+        if (!IsInDumpMode)
         {
             yield break;
         }
@@ -45,10 +98,26 @@ public class Building_RailDump : Building
         yield return new Command_Toggle
         {
             icon = TexButton.SelectOverlappingNext,
-            defaultLabel = DumpMode ? "MGHU.DumpAll".Translate() : "MGHU.DumpFree".Translate(),
-            defaultDesc = DumpMode ? "MGHU.DumpAllDesc".Translate() : "MGHU.DumpFreeDesc".Translate(),
-            isActive = () => DumpMode,
-            toggleAction = delegate { DumpMode = !DumpMode; }
+            defaultLabel = "MGHU.DumpAll".Translate(),
+            defaultDesc = "MGHU.DumpAllDesc".Translate(),
+            isActive = () => WillDumpWhereever,
+            toggleAction = delegate { WillDumpWhereever = !WillDumpWhereever; }
+        };
+        yield return new Command_Toggle
+        {
+            icon = ContentFinder<Texture2D>.Get("UI/Designators/PlanOn"),
+            defaultLabel = "MGHU.DumpFree".Translate(),
+            defaultDesc = "MGHU.DumpFreeDesc".Translate(),
+            isActive = () => WillDumpOnFreeSpots,
+            toggleAction = delegate { WillDumpOnFreeSpots = !WillDumpOnFreeSpots; }
+        };
+        yield return new Command_Toggle
+        {
+            icon = ContentFinder<Texture2D>.Get("UI/Commands/LoadTransporter"),
+            defaultLabel = "MGHU.UseStorage".Translate(),
+            defaultDesc = "MGHU.UseStorageDesc".Translate(),
+            isActive = () => WillDumpInStorages,
+            toggleAction = delegate { WillDumpInStorages = !WillDumpInStorages; }
         };
     }
 
@@ -59,31 +128,36 @@ public class Building_RailDump : Building
         var compTransporter = minecart?.GetComp<CompTransporter>();
         if (compTransporter != null)
         {
-            if (Mode)
+            if (IsInDumpMode)
             {
                 if (compTransporter.innerContainer.Any)
                 {
                     var validCells = this.CellsAdjacent8WayAndInside().Where(vec3 =>
                         vec3 != Position && vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null);
-                    for (var index = 0; index < compTransporter.innerContainer.Count; index++)
+
+                    if (WillDumpInStorages)
                     {
-                        var thing = compTransporter.innerContainer[index];
-                        var storageCell = validCells.FirstOrDefault(vec3 => vec3.IsValidStorageFor(Map, thing));
-
-                        if (storageCell == default)
+                        for (var index = 0; index < compTransporter.innerContainer.Count; index++)
                         {
-                            continue;
-                        }
+                            var thing = compTransporter.innerContainer[index];
+                            var storageCell = validCells.FirstOrDefault(vec3 => vec3.IsValidStorageFor(Map, thing));
 
-                        compTransporter.innerContainer.TryDrop(thing, storageCell, Map,
-                            ThingPlaceMode.Direct, thing.stackCount, out _);
+                            if (storageCell == default)
+                            {
+                                continue;
+                            }
+
+                            compTransporter.innerContainer.TryDrop(thing, storageCell, Map,
+                                ThingPlaceMode.Direct, thing.stackCount, out _);
+                        }
                     }
 
 
-                    if (compTransporter.innerContainer.Any)
+                    if (WillDumpOnFreeSpots || WillDumpWhereever)
                     {
                         var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
-                            thing.def.category == ThingCategory.Item && thing.def.EverHaulable)).ToList();
+                            thing.def.category == ThingCategory.Item && thing.def.EverHaulable ||
+                            thing is Building_Storage)).ToList();
                         var currentCell = 0;
                         if (emptyCells.Any())
                         {
@@ -103,7 +177,7 @@ public class Building_RailDump : Building
                         }
                     }
 
-                    if (compTransporter.innerContainer.Any && DumpMode)
+                    if (compTransporter.innerContainer.Any && WillDumpWhereever)
                     {
                         compTransporter.innerContainer.TryDropAll(Position, Map, ThingPlaceMode.Near);
                     }
@@ -133,7 +207,7 @@ public class Building_RailDump : Building
         }
 
         var compRefuelable = minecart?.GetComp<CompRefuelable>();
-        if (compRefuelable == null || Mode || !(compRefuelable.TargetFuelLevel - compRefuelable.Fuel > 1f))
+        if (compRefuelable == null || IsInDumpMode || !(compRefuelable.TargetFuelLevel - compRefuelable.Fuel > 1f))
         {
             return;
         }
@@ -154,5 +228,7 @@ public class Building_RailDump : Building
         base.ExposeData();
         Scribe_Values.Look(ref mode, "mode", true);
         Scribe_Values.Look(ref dumpMode, "dumpMode", true);
+        Scribe_Values.Look(ref freeSpots, "freeSpots");
+        Scribe_Values.Look(ref storages, "storages");
     }
 }

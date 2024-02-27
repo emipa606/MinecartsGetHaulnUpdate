@@ -25,4 +25,6 @@
   <MGHU.DumpAllDesc>Décharge toute la cargaison, peut décharger la cargaison sur la voie s'il n'y a pas d'espace libre à côté de la voie.</MGHU.DumpAllDesc>
   <MGHU.DumpFree>Espace libre</MGHU.DumpFree>
   <MGHU.DumpFreeDesc>Dépose la cargaison dans les espaces libres à proximité. S'il n'y a pas assez d'espaces libres, la cargaison reste dans le chariot.</MGHU.DumpFreeDesc>
+  <MGHU.UseStorage>Stockage uniquement</MGHU.UseStorage>
+  <MGHU.UseStorageDesc>La cargaison ne sera déversée que dans les espaces de stockage valides. S'il n'y a pas d'espace de stockage libre, la cargaison restera dans le panier.</MGHU.UseStorageDesc>
 </LanguageData>

@@ -25,4 +25,6 @@
   <MGHU.DumpAllDesc>倾倒所有货物，如果轨道旁没有空闲空间，可在轨道上倾倒货物</MGHU.DumpAllDesc>
   <MGHU.DumpFree>自由空间</MGHU.DumpFree>
   <MGHU.DumpFreeDesc>将货物倾倒在附近的空位上，如果没有足够的空位，货物将留在小车中</MGHU.DumpFreeDesc>
+  <MGHU.UseStorage>仅存储</MGHU.UseStorage>
+  <MGHU.UseStorageDesc>只倾倒有效存储区中的货物，如果没有空闲存储区，货物将留在购物车中</MGHU.UseStorageDesc>
 </LanguageData>

@@ -6,6 +6,8 @@
   <MGHU.DumpAllDesc>Dumps all cargo, may dump cargo on the track if there is no free space next to the track</MGHU.DumpAllDesc>
   <MGHU.DumpFree>Free Space</MGHU.DumpFree>
   <MGHU.DumpFreeDesc>Will dump cargo in nearby free spaces, if there are not enough free spaces, cargo will remain in the cart</MGHU.DumpFreeDesc>
+  <MGHU.UseStorage>Storage Only</MGHU.UseStorage>
+  <MGHU.UseStorageDesc>Will only dump cargo in valid storage, if there are no free storage, cargo will remain in the cart</MGHU.UseStorageDesc>
   <MGHU.Turn>Turn: </MGHU.Turn>
   <MGHU.Right>Right</MGHU.Right>
   <MGHU.Left>Left</MGHU.Left>
