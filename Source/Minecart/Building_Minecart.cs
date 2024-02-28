@@ -10,6 +10,10 @@ namespace Minecart;
 
 public class Building_Minecart : Building
 {
+    private bool autoLaunch;
+
+    private CompTransporter cartTransporter;
+    private bool isLoading;
     public Building_Minecart leadingMinecart;
     public float recursiveMass = 1;
 
@@ -18,6 +22,19 @@ public class Building_Minecart : Building
     // Public values
     private float subtile;
     public Building_Minecart trailingMinecart;
+
+    public CompTransporter CartTransporter
+    {
+        get
+        {
+            if (cartTransporter == null)
+            {
+                cartTransporter = GetComp<CompTransporter>();
+            }
+
+            return cartTransporter;
+        }
+    }
 
     public float Subtile
     {
@@ -75,6 +92,8 @@ public class Building_Minecart : Building
     public override void ExposeData()
     {
         base.ExposeData();
+        Scribe_Values.Look(ref autoLaunch, "autoLaunch");
+        Scribe_Values.Look(ref isLoading, "isLoading");
         Scribe_Values.Look(ref speed, "speed");
         Scribe_Values.Look(ref subtile, "subtile");
         Scribe_References.Look(ref trailingMinecart, "trailingMinecart");
@@ -146,19 +165,29 @@ public class Building_Minecart : Building
             yield return gizmo;
         }
 
+        if (leadingMinecart == null)
+        {
+            yield return new Command_Toggle
+            {
+                icon = CompLaunchable.LaunchCommandTex,
+                defaultLabel = "MGHU.AutoLaunch".Translate(),
+                defaultDesc = "MGHU.AutoLaunchDesc".Translate(),
+                isActive = () => autoLaunch,
+                toggleAction = delegate { autoLaunch = !autoLaunch; }
+            };
+        }
+
         if (!Prefs.DevMode)
         {
             yield break;
         }
 
-        var launch = new Command_Action
+        yield return new Command_Action
         {
             action = () => headMinecart.Launch(),
             defaultLabel = "MGHU.Launch".Translate(),
             defaultDesc = "MGHU.LaunchTT".Translate()
         };
-
-        yield return launch;
     }
 
     // Float menu
@@ -224,6 +253,27 @@ public class Building_Minecart : Building
         {
             if (leadingMinecart == null)
             {
+                if (isLoading)
+                {
+                    if (!CartTransporter.LoadingInProgressOrReadyToLaunch ||
+                        !CartTransporter.AnyInGroupHasAnythingLeftToLoad)
+                    {
+                        isLoading = false;
+                        if (autoLaunch)
+                        {
+                            Launch();
+                        }
+                    }
+                }
+                else
+                {
+                    if (CartTransporter.LoadingInProgressOrReadyToLaunch &&
+                        CartTransporter.AnyInGroupHasAnythingLeftToLoad)
+                    {
+                        isLoading = true;
+                    }
+                }
+
                 if (isClear(Forward))
                 {
                     subtile += speed / GenTicks.TicksPerRealSecond;

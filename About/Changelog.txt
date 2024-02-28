@@ -1,5 +1,9 @@
 # Changelog for MinecartsGetHaulnUpdate
 
+1.4.6 - Dump all option will no longer dump on the rail, free spot will not dump in storage zones. Added auto-launch option on carts.
+Used DeepL to update translations for ChineseSimplified, French, German
+
+
 1.4.5 - Added option to only unload in valid storages
 Used DeepL to update translations for ChineseSimplified, French, German
 

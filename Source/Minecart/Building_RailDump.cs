@@ -125,7 +125,7 @@ public class Building_RailDump : Building
     {
         var minecart = Position.GetFirstThing<Building_Minecart>(Map);
 
-        var compTransporter = minecart?.GetComp<CompTransporter>();
+        var compTransporter = minecart?.CartTransporter;
         if (compTransporter != null)
         {
             if (IsInDumpMode)
@@ -133,6 +133,7 @@ public class Building_RailDump : Building
                 if (compTransporter.innerContainer.Any)
                 {
                     var validCells = this.CellsAdjacent8WayAndInside().Where(vec3 =>
+                        vec3.InBounds(Map) &&
                         vec3 != Position && vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null);
 
                     if (WillDumpInStorages)
@@ -156,8 +157,11 @@ public class Building_RailDump : Building
                     if (WillDumpOnFreeSpots || WillDumpWhereever)
                     {
                         var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
-                            thing.def.category == ThingCategory.Item && thing.def.EverHaulable ||
-                            thing is Building_Storage)).ToList();
+                                                                      thing.def.category == ThingCategory.Item &&
+                                                                      thing.def.EverHaulable ||
+                                                                      thing is Building_Storage) &&
+                                                                  vec3.GetZone(Map)?.GetType() !=
+                                                                  typeof(Zone_Stockpile)).ToList();
                         var currentCell = 0;
                         if (emptyCells.Any())
                         {
@@ -179,7 +183,39 @@ public class Building_RailDump : Building
 
                     if (compTransporter.innerContainer.Any && WillDumpWhereever)
                     {
-                        compTransporter.innerContainer.TryDropAll(Position, Map, ThingPlaceMode.Near);
+                        var radius = 1;
+
+                        while (compTransporter.innerContainer.Count > 0)
+                        {
+                            var rectToCheck = CellRect.CenteredOn(Position, radius);
+                            var cellsToTry = rectToCheck.EdgeCells.Where(vec3 => vec3.InBounds(Map) &&
+                                    vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                                    !vec3.GetThingList(Map).Any(thing =>
+                                        thing.def.category == ThingCategory.Item && thing.def.EverHaulable))
+                                .InRandomOrder()
+                                .ToList();
+                            if (cellsToTry.Any())
+                            {
+                                for (var index = 0; index < compTransporter.innerContainer.Count; index++)
+                                {
+                                    if (cellsToTry.Count() <= index)
+                                    {
+                                        break;
+                                    }
+
+                                    var thing = compTransporter.innerContainer[index];
+                                    compTransporter.innerContainer.TryDrop(thing, cellsToTry[index], Map,
+                                        ThingPlaceMode.Direct,
+                                        thing.stackCount, out _);
+                                }
+                            }
+
+                            radius++;
+                            if (radius > 10)
+                            {
+                                break;
+                            }
+                        }
                     }
 
                     var transporters = compTransporter.TransportersInGroup(Map);

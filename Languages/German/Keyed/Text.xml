@@ -27,4 +27,6 @@
   <MGHU.DumpFreeDesc>Kippt die Ladung auf freie Plätze in der Nähe, wenn es nicht genug freie Plätze gibt, bleibt die Ladung im Wagen.</MGHU.DumpFreeDesc>
   <MGHU.UseStorage>Nur Lagerung</MGHU.UseStorage>
   <MGHU.UseStorageDesc>Schüttet nur Ladung aus, die sich in einem gültigen Lager befindet, wenn es kein freies Lager gibt, bleibt die Ladung im Wagen</MGHU.UseStorageDesc>
+  <MGHU.AutoLaunch>Automatischer Start</MGHU.AutoLaunch>
+  <MGHU.AutoLaunchDesc>Wenn der letzte Artikel in den Einkaufswagen gelegt wird, startet das Ladepfand automatisch den Einkaufswagen</MGHU.AutoLaunchDesc>
 </LanguageData>

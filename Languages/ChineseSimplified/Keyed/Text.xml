@@ -27,4 +27,6 @@
   <MGHU.DumpFreeDesc>将货物倾倒在附近的空位上，如果没有足够的空位，货物将留在小车中</MGHU.DumpFreeDesc>
   <MGHU.UseStorage>仅存储</MGHU.UseStorage>
   <MGHU.UseStorageDesc>只倾倒有效存储区中的货物，如果没有空闲存储区，货物将留在购物车中</MGHU.UseStorageDesc>
+  <MGHU.AutoLaunch>自动启动</MGHU.AutoLaunch>
+  <MGHU.AutoLaunchDesc>当最后一件商品加入购物车时，装载小卒会自动启动购物车</MGHU.AutoLaunchDesc>
 </LanguageData>

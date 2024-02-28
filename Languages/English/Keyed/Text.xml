@@ -3,11 +3,13 @@
   <MGHU.DumpMode>Dump Mode</MGHU.DumpMode>
   <MGHU.LoadMode>Load Mode</MGHU.LoadMode>
   <MGHU.DumpAll>Dump All</MGHU.DumpAll>
-  <MGHU.DumpAllDesc>Dumps all cargo, may dump cargo on the track if there is no free space next to the track</MGHU.DumpAllDesc>
+  <MGHU.DumpAllDesc>Dumps all cargo, may dump cargo further away from the track if there is no free space next to the track</MGHU.DumpAllDesc>
   <MGHU.DumpFree>Free Space</MGHU.DumpFree>
   <MGHU.DumpFreeDesc>Will dump cargo in nearby free spaces, if there are not enough free spaces, cargo will remain in the cart</MGHU.DumpFreeDesc>
   <MGHU.UseStorage>Storage Only</MGHU.UseStorage>
   <MGHU.UseStorageDesc>Will only dump cargo in valid storage, if there are no free storage, cargo will remain in the cart</MGHU.UseStorageDesc>
+  <MGHU.AutoLaunch>Auto Launch</MGHU.AutoLaunch>
+  <MGHU.AutoLaunchDesc>When the last item is added to the cart, the loading pawn will automatically launch the cart</MGHU.AutoLaunchDesc>
   <MGHU.Turn>Turn: </MGHU.Turn>
   <MGHU.Right>Right</MGHU.Right>
   <MGHU.Left>Left</MGHU.Left>
@@ -25,5 +27,5 @@
   <MGHU.Speed>Speed: {0}</MGHU.Speed>
   <MGHU.SpeedInspect>Speed: {0}c</MGHU.SpeedInspect>
   <MGHU.Mass>Mass: {0} ({1})</MGHU.Mass>
-  <MGHU.LaunchTT>Launch Minecart</MGHU.LaunchTT>
+  <MGHU.LaunchTT>Launch minecart</MGHU.LaunchTT>
 </LanguageData>
