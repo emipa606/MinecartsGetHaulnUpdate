@@ -160,9 +160,11 @@ public class Building_RailDump : Building
                                                                       thing.def.category == ThingCategory.Item &&
                                                                       thing.def.EverHaulable ||
                                                                       thing is Building_Storage) &&
+                                                                  vec3.GetFirstBuilding(Map) == null &&
                                                                   vec3.GetZone(Map)?.GetType() !=
                                                                   typeof(Zone_Stockpile)).ToList();
                         var currentCell = 0;
+                        if (Prefs.DevMode){Log.Message($"[Minecarts] RailDump Empty cells: {emptyCells.Count()}");}
                         if (emptyCells.Any())
                         {
                             for (var index = 0; index < compTransporter.innerContainer.Count; index++)
@@ -190,10 +192,12 @@ public class Building_RailDump : Building
                             var rectToCheck = CellRect.CenteredOn(Position, radius);
                             var cellsToTry = rectToCheck.EdgeCells.Where(vec3 => vec3.InBounds(Map) &&
                                     vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                                    (vec3.GetFirstBuilding(Map) == null || vec3.GetFirstBuilding(Map).CanBeSeenOver() == true) &&
                                     !vec3.GetThingList(Map).Any(thing =>
                                         thing.def.category == ThingCategory.Item && thing.def.EverHaulable))
                                 .InRandomOrder()
                                 .ToList();
+                            if (Prefs.DevMode){Log.Message($"[Minecarts] RailDump tries dumping into {cellsToTry.Count()} cells at radius {radius}");}
                             if (cellsToTry.Any())
                             {
                                 for (var index = 0; index < compTransporter.innerContainer.Count; index++)
@@ -210,7 +214,7 @@ public class Building_RailDump : Building
                                 }
                             }
 
-                            radius++;
+                            if (!cellsToTry.Any()){radius++;}
                             if (radius > 10)
                             {
                                 break;
