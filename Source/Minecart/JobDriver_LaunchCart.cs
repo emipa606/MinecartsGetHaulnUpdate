@@ -11,7 +11,7 @@ public class JobDriver_LaunchCart : JobDriver_Flick
         return true;
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         yield return Toils_Reserve.Reserve(TargetIndex.A);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);

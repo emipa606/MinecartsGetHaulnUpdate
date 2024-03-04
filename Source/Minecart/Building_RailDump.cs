@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -132,53 +133,76 @@ public class Building_RailDump : Building
             {
                 if (compTransporter.innerContainer.Any)
                 {
-                    var validCells = this.CellsAdjacent8WayAndInside().Where(vec3 =>
-                        vec3.InBounds(Map) &&
-                        vec3 != Position && vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null);
-
+                    var currentRoom = Position.GetRoom(Map);
                     if (WillDumpInStorages)
-                    {
-                        for (var index = 0; index < compTransporter.innerContainer.Count; index++)
-                        {
-                            var thing = compTransporter.innerContainer[index];
-                            var storageCell = validCells.FirstOrDefault(vec3 => vec3.IsValidStorageFor(Map, thing));
 
-                            if (storageCell == default)
+                    {
+                        var validCells = new HashSet<IntVec3>(CellRect
+                            .CenteredOn(Position, MinecartMod.instance.Settings.StorageRange).Where(vec3 =>
+                                vec3.InBounds(Map) && vec3 != Position &&
+                                vec3.GetRoom(Map) == currentRoom &&
+                                vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
+                        foreach (var validCell in validCells.ToList())
+                        {
+                            if (validCell.GetFirstBuilding(Map) is Building_Storage storage)
                             {
+                                validCells.AddRange(storage.AllSlotCells());
                                 continue;
                             }
 
-                            compTransporter.innerContainer.TryDrop(thing, storageCell, Map,
-                                ThingPlaceMode.Direct, thing.stackCount, out _);
+                            if (validCell.GetZone(Map) is Zone_Stockpile stockpile)
+                            {
+                                validCells.AddRange(stockpile.Cells.Where(vec3 =>
+                                    vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
+                            }
+                        }
+
+                        for (var i = 0; i < compTransporter.innerContainer.Count; i++)
+                        {
+                            var thing = compTransporter.innerContainer.GetAt(i);
+                            foreach (var validStorageCell in validCells.Where(
+                                         vec3 => vec3.IsValidStorageFor(Map, thing)))
+                            {
+                                if (compTransporter.innerContainer.TryDrop(thing, validStorageCell, Map,
+                                        ThingPlaceMode.Direct, thing.stackCount, out _))
+                                {
+                                    break;
+                                }
+                            }
                         }
                     }
 
 
                     if (WillDumpOnFreeSpots || WillDumpWhereever)
                     {
+                        var validCells = new HashSet<IntVec3>(CellRect
+                            .CenteredOn(Position, MinecartMod.instance.Settings.FreeSpaceRange).Where(vec3 =>
+                                vec3.InBounds(Map) && vec3 != Position &&
+                                vec3.GetRoom(Map) == currentRoom &&
+                                vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
+
                         var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
                                                                       thing.def.category == ThingCategory.Item &&
-                                                                      thing.def.EverHaulable ||
-                                                                      thing is Building_Storage) &&
+                                                                      thing.def.EverHaulable) &&
                                                                   vec3.GetFirstBuilding(Map) == null &&
                                                                   vec3.GetZone(Map)?.GetType() !=
                                                                   typeof(Zone_Stockpile)).ToList();
-                        var currentCell = 0;
-                        if (Prefs.DevMode){Log.Message($"[Minecarts] RailDump Empty cells: {emptyCells.Count()}");}
+
+                        Main.LogMessage($"RailDump Empty cells: {emptyCells.Count}");
+
                         if (emptyCells.Any())
                         {
                             for (var index = 0; index < compTransporter.innerContainer.Count; index++)
                             {
-                                if (emptyCells.Count <= currentCell)
+                                foreach (var emptyCell in emptyCells)
                                 {
-                                    break;
+                                    var thing = compTransporter.innerContainer.GetAt(index);
+                                    if (compTransporter.innerContainer.TryDrop(thing, emptyCell, Map,
+                                            ThingPlaceMode.Direct, thing.stackCount, out _))
+                                    {
+                                        break;
+                                    }
                                 }
-
-                                var thing = compTransporter.innerContainer[index];
-                                compTransporter.innerContainer.TryDrop(thing, emptyCells[currentCell], Map,
-                                    ThingPlaceMode.Direct,
-                                    thing.stackCount, out _);
-                                currentCell++;
                             }
                         }
                     }
@@ -186,36 +210,39 @@ public class Building_RailDump : Building
                     if (compTransporter.innerContainer.Any && WillDumpWhereever)
                     {
                         var radius = 1;
-
                         while (compTransporter.innerContainer.Count > 0)
                         {
                             var rectToCheck = CellRect.CenteredOn(Position, radius);
                             var cellsToTry = rectToCheck.EdgeCells.Where(vec3 => vec3.InBounds(Map) &&
                                     vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
-                                    (vec3.GetFirstBuilding(Map) == null || vec3.GetFirstBuilding(Map).CanBeSeenOver() == true) &&
-                                    !vec3.GetThingList(Map).Any(thing =>
-                                        thing.def.category == ThingCategory.Item && thing.def.EverHaulable))
+                                    (vec3.GetFirstBuilding(Map) == null ||
+                                     vec3.GetFirstBuilding(Map).CanBeSeenOver()) &&
+                                    vec3.GetRoom(Map) == currentRoom)
                                 .InRandomOrder()
                                 .ToList();
-                            if (Prefs.DevMode){Log.Message($"[Minecarts] RailDump tries dumping into {cellsToTry.Count()} cells at radius {radius}");}
+                            Main.LogMessage($"RailDump tries dumping into {cellsToTry.Count} cells at radius {radius}");
+
                             if (cellsToTry.Any())
                             {
                                 for (var index = 0; index < compTransporter.innerContainer.Count; index++)
                                 {
-                                    if (cellsToTry.Count() <= index)
+                                    foreach (var cellToTry in cellsToTry)
                                     {
-                                        break;
+                                        if (compTransporter.innerContainer.TryDrop(
+                                                compTransporter.innerContainer.GetAt(index), cellToTry, Map,
+                                                ThingPlaceMode.Direct,
+                                                compTransporter.innerContainer.GetAt(index).stackCount,
+                                                out _))
+                                        {
+                                            break;
+                                        }
                                     }
-
-                                    var thing = compTransporter.innerContainer[index];
-                                    compTransporter.innerContainer.TryDrop(thing, cellsToTry[index], Map,
-                                        ThingPlaceMode.Direct,
-                                        thing.stackCount, out _);
                                 }
                             }
 
-                            if (!cellsToTry.Any()){radius++;}
-                            if (radius > 10)
+                            radius++;
+
+                            if (radius > MinecartMod.instance.Settings.DropAllRange)
                             {
                                 break;
                             }
@@ -233,15 +260,34 @@ public class Building_RailDump : Building
             {
                 foreach (var cell in this.CellsAdjacent8WayAndInside())
                 {
-                    var thing = cell.GetFirstItem(Map);
-                    if (thing != null
-                        && thing.IsInValidStorage()
-                        && compTransporter.innerContainer.Sum(t => t.GetStatValue(StatDefOf.Mass) * t.stackCount)
-                        + (thing.GetStatValue(StatDefOf.Mass) * thing.stackCount) <
-                        compTransporter.Props.massCapacity)
+                    var currentMassLeft = compTransporter.Props.massCapacity -
+                                          compTransporter.innerContainer.Sum(t =>
+                                              t.GetStatValue(StatDefOf.Mass) * t.stackCount);
+
+                    if (currentMassLeft <= 0)
                     {
-                        compTransporter.innerContainer.TryAdd(thing.SplitOff(thing.stackCount));
+                        break;
                     }
+
+                    var thing = cell.GetFirstItem(Map);
+                    if (thing == null || !thing.IsInValidStorage())
+                    {
+                        continue;
+                    }
+
+                    var massPerItem = thing.GetStatValue(StatDefOf.Mass);
+                    if (massPerItem == 0)
+                    {
+                        continue;
+                    }
+
+                    var maxStack = (int)Math.Min(Math.Floor(currentMassLeft / massPerItem), thing.stackCount);
+                    if (maxStack == 0)
+                    {
+                        continue;
+                    }
+
+                    compTransporter.innerContainer.TryAdd(thing.SplitOff(maxStack));
                 }
             }
         }

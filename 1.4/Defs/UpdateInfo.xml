@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<TabulaRasa.UpdateDef Abstract="true" Name="MinecartsGetHaulnUpdate_UpdateInfoBase">
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2998019751</linkUrl>
+		<banner>UpdateInfo/MinecartsGetHaulnUpdate</banner>
+	</TabulaRasa.UpdateDef>
+	<TabulaRasa.UpdateDef ParentName="MinecartsGetHaulnUpdate_UpdateInfoBase">
+		<defName>MinecartsGetHaulnUpdate_1_4_6</defName>
+		<date>2024/3/4</date>
+		<content>Been working on this mod quite a bit after some great input from the user SunPraise!
+Generally the automatic loading and unloading of the carts now has more options and behaves more logical. There are now also mod-options for some aspects of these new features.
+
+There are more ideas for the mod and if I get the time it will hopefully see more additions in the future! For a full list of the changes, please see the Changenotes on the mod-page or Github-repo.</content>
+	</TabulaRasa.UpdateDef>
+</Defs>
+

@@ -28,4 +28,13 @@
   <MGHU.SpeedInspect>Speed: {0}c</MGHU.SpeedInspect>
   <MGHU.Mass>Mass: {0} ({1})</MGHU.Mass>
   <MGHU.LaunchTT>Launch minecart</MGHU.LaunchTT>
+  <MGHU.DropAllRange>Range for "Dump all": {0}</MGHU.DropAllRange>
+  <MGHU.DropAllRangeTT>The radius from the drop-cell to drop items when the dump all-option is used</MGHU.DropAllRangeTT>
+  <MGHU.FreeSpaceRange>Range for "Free space": {0}</MGHU.FreeSpaceRange>
+  <MGHU.FreeSpaceRangeTT>The radius from the drop-cell to drop items when the free space-option is used</MGHU.FreeSpaceRangeTT>
+  <MGHU.StorageRange>Range for "Storage Only": {0}</MGHU.StorageRange>
+  <MGHU.StorageRangeTT>The radius from the drop-cell to look for valid storages when the storage only-option is used</MGHU.StorageRangeTT>
+  <MGHU.VerboseLogging>Verbose logging</MGHU.VerboseLogging>
+  <MGHU.CurrentModVersion>Installed mod-version: {0}</MGHU.CurrentModVersion>
+  <MGHU.Reset>Reset</MGHU.Reset>
 </LanguageData>

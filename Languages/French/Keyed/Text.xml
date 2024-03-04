@@ -29,4 +29,13 @@
   <MGHU.UseStorageDesc>La cargaison ne sera déversée que dans les espaces de stockage valides. S'il n'y a pas d'espace de stockage libre, la cargaison restera dans le panier.</MGHU.UseStorageDesc>
   <MGHU.AutoLaunch>Lancement automatique</MGHU.AutoLaunch>
   <MGHU.AutoLaunchDesc>Lorsque le dernier article est ajouté au panier, le pion de chargement lance automatiquement le panier.</MGHU.AutoLaunchDesc>
+  <MGHU.DropAllRange>Plage pour "Vider tout" : {0}</MGHU.DropAllRange>
+  <MGHU.DropAllRangeTT>Le rayon de la cellule de dépôt pour déposer les éléments lorsque l'option "dump all" est utilisée.</MGHU.DropAllRangeTT>
+  <MGHU.FreeSpaceRange>Intervalle pour "Espace libre" : {0}</MGHU.FreeSpaceRange>
+  <MGHU.FreeSpaceRangeTT>Le rayon de la cellule de dépôt pour déposer les éléments lorsque l'option d'espace libre est utilisée.</MGHU.FreeSpaceRangeTT>
+  <MGHU.StorageRange>Fourchette pour "Stockage uniquement" : {0}</MGHU.StorageRange>
+  <MGHU.StorageRangeTT>Rayon à partir de la cellule de dépôt pour rechercher des stockages valides lorsque l'option "stockage uniquement" est utilisée.</MGHU.StorageRangeTT>
+  <MGHU.VerboseLogging>Journalisation verbeuse</MGHU.VerboseLogging>
+  <MGHU.CurrentModVersion>Version installée du mod : {0}</MGHU.CurrentModVersion>
+  <MGHU.Reset>Remise à zéro</MGHU.Reset>
 </LanguageData>

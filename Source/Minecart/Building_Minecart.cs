@@ -348,11 +348,27 @@ public class Building_Minecart : Building
     public static bool isClear(IntVec3 cell, Map map, ThingDef_Minecart def, bool ignoreMinecarts = false,
         bool ignoreRails = false)
     {
-        var door = cell.GetDoor(map);
-        return (cell.Standable(map) || ignoreMinecarts && cell.GetFirstThing<Building_Minecart>(map) != null)
-               && (door?.Open ?? true)
-               && (cell.GetFirstThing(map, def.railDef) != null || ignoreRails)
-            ;
+        if (!cell.Standable(map) && (!ignoreMinecarts || cell.GetFirstThing<Building_Minecart>(map) == null))
+        {
+            return false;
+        }
+
+        if (cell.GetDoor(map) is not { } door || door.Open)
+        {
+            return cell.GetFirstThing(map, def.railDef) != null || ignoreRails;
+        }
+
+        if (door.DoorPowerOn && !door.IsForbidden(Faction.OfPlayerSilentFail))
+        {
+            door.openInt = true;
+            door.lastFriendlyTouchTick = Find.TickManager.TicksGame;
+        }
+        else
+        {
+            return false;
+        }
+
+        return cell.GetFirstThing(map, def.railDef) != null || ignoreRails;
     }
 
     // Summary:

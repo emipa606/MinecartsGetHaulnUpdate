@@ -29,4 +29,13 @@
   <MGHU.UseStorageDesc>Schüttet nur Ladung aus, die sich in einem gültigen Lager befindet, wenn es kein freies Lager gibt, bleibt die Ladung im Wagen</MGHU.UseStorageDesc>
   <MGHU.AutoLaunch>Automatischer Start</MGHU.AutoLaunch>
   <MGHU.AutoLaunchDesc>Wenn der letzte Artikel in den Einkaufswagen gelegt wird, startet das Ladepfand automatisch den Einkaufswagen</MGHU.AutoLaunchDesc>
+  <MGHU.DropAllRange>Bereich für "Dump all": {0}</MGHU.DropAllRange>
+  <MGHU.DropAllRangeTT>Der Radius von der Abwurfzelle zum Abwurf von Gegenständen, wenn die Option "Alles abwerfen" verwendet wird</MGHU.DropAllRangeTT>
+  <MGHU.FreeSpaceRange>Bereich für "Freier Platz": {0}</MGHU.FreeSpaceRange>
+  <MGHU.FreeSpaceRangeTT>Der Radius von der Drop-Zelle zum Ablegen von Objekten, wenn die Option "Freiraum" verwendet wird</MGHU.FreeSpaceRangeTT>
+  <MGHU.StorageRange>Bereich für "Nur Lagerung": {0}</MGHU.StorageRange>
+  <MGHU.StorageRangeTT>Der Radius der Drop-Zelle, in dem nach gültigen Speichern gesucht wird, wenn die Option "Nur Speicher" verwendet wird</MGHU.StorageRangeTT>
+  <MGHU.VerboseLogging>Ausführliche Protokollierung</MGHU.VerboseLogging>
+  <MGHU.CurrentModVersion>Installierte Mod-Version: {0}</MGHU.CurrentModVersion>
+  <MGHU.Reset>Zurücksetzen</MGHU.Reset>
 </LanguageData>

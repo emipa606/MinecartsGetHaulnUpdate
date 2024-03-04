@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<HugsLib.UpdateFeatureDef Abstract="true" Name="MinecartsGetHaulnUpdate_UpdateFeatureBase">
+		<modNameReadable>MinecartsGetHaulnUpdate</modNameReadable>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2998019751</linkUrl>
+	</HugsLib.UpdateFeatureDef>
+	<HugsLib.UpdateFeatureDef ParentName="MinecartsGetHaulnUpdate_UpdateFeatureBase">
+		<defName>MinecartsGetHaulnUpdate_1_4_6</defName>
+		<assemblyVersion>1.4.6</assemblyVersion>
+		<content>Been working on this mod quite a bit after some great input from the user SunPraise!
+Generally the automatic loading and unloading of the carts now has more options and behaves more logical. There are now also mod-options for some aspects of these new features.
+
+There are more ideas for the mod and if I get the time it will hopefully see more additions in the future! For a full list of the changes, please see the Changenotes on the mod-page or Github-repo.</content>
+	</HugsLib.UpdateFeatureDef>
+</Defs>
+

@@ -29,4 +29,13 @@
   <MGHU.UseStorageDesc>只倾倒有效存储区中的货物，如果没有空闲存储区，货物将留在购物车中</MGHU.UseStorageDesc>
   <MGHU.AutoLaunch>自动启动</MGHU.AutoLaunch>
   <MGHU.AutoLaunchDesc>当最后一件商品加入购物车时，装载小卒会自动启动购物车</MGHU.AutoLaunchDesc>
+  <MGHU.DropAllRange>全部转储 "的范围：{0}</MGHU.DropAllRange>
+  <MGHU.DropAllRangeTT>使用全部转储选项时，从下拉菜单中下拉菜单的半径</MGHU.DropAllRangeTT>
+  <MGHU.FreeSpaceRange>可用空间 "的范围：{0}</MGHU.FreeSpaceRange>
+  <MGHU.FreeSpaceRangeTT>使用自由空间选项时，从下拉框下拉物品的半径</MGHU.FreeSpaceRangeTT>
+  <MGHU.StorageRange>仅存储 "的范围：{0}</MGHU.StorageRange>
+  <MGHU.StorageRangeTT>使用仅存储选项时，从下拉菜单中查找有效存储空间的半径</MGHU.StorageRangeTT>
+  <MGHU.VerboseLogging>冗长日志记录</MGHU.VerboseLogging>
+  <MGHU.CurrentModVersion>已安装模块版本：{0}</MGHU.CurrentModVersion>
+  <MGHU.Reset>重置</MGHU.Reset>
 </LanguageData>
