@@ -183,7 +183,7 @@ public class Building_RailDump : Building
 
                         var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
                                                                       thing.def.category == ThingCategory.Item &&
-                                                                      thing.def.EverHaulable) &&
+                                                                      !thing.def.EverHaulable) &&
                                                                   vec3.GetFirstBuilding(Map) == null &&
                                                                   vec3.GetZone(Map)?.GetType() !=
                                                                   typeof(Zone_Stockpile)).ToList();
