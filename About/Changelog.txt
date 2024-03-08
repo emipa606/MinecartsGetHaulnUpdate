@@ -1,5 +1,9 @@
 # Changelog for MinecartsGetHaulnUpdate
 
+1.4.8 - Dumping in Free Space mode will also try to fill full stacks
+Rail dump in Load mode will take from all storage spaces, not just the cell in range
+Dump radius for Dump All mode will not increase with each placement attempt, instead increases when there are no valid cells in range.
+
 1.4.7 - Dumping will try to fill non-full stacks
 Range of dumping is now configurable
 Filling can now pick up parts of stacks if a full stack would be over the weightlimit

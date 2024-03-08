@@ -240,8 +240,9 @@ public class Building_RailDump : Building
                                 }
                             }
 
-                            radius++;
-
+                            if (!cellsToTry.Any()) {
+                                radius++;
+                            }
                             if (radius > MinecartMod.instance.Settings.DropAllRange)
                             {
                                 break;
@@ -259,7 +260,6 @@ public class Building_RailDump : Building
             else
             {
                 //Is in load mode
-                //todo
                 var validCells = new HashSet<IntVec3>(CellRect
                 .CenteredOn(Position, 1).Where(vec3 =>
                 vec3.GetFirstBuilding(Map) is Building_Storage ||
