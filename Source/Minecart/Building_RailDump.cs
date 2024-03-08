@@ -258,7 +258,21 @@ public class Building_RailDump : Building
             }
             else
             {
-                foreach (var cell in this.CellsAdjacent8WayAndInside())
+                //Is in load mode
+                //todo
+                var validCells = new HashSet<IntVec3>(CellRect
+                .CenteredOn(Position, 1).Where(vec3 =>
+                vec3.GetFirstBuilding(Map) is Building_Storage ||
+                vec3.GetZone(Map) is Zone_Stockpile
+                ));
+                foreach (var cell in validCells.ToList())
+                {
+                    if (cell.GetFirstBuilding(Map) is Building_Storage storage)
+                    {
+                        validCells.AddRange(storage.AllSlotCells());
+                    }
+                }
+                    foreach (var cell in validCells)
                 {
                     var currentMassLeft = compTransporter.Props.massCapacity -
                                           compTransporter.innerContainer.Sum(t =>
