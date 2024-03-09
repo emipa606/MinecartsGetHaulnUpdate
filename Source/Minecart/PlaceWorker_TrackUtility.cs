@@ -12,7 +12,7 @@ public class PlaceWorker_TrackUtility : PlaceWorker
             return new AcceptanceReport("MGHU.Blocked".Translate());
         }
 
-        return loc.GetFirstThing(map, ThingDefOf.ThingRail) == null
+        return loc.GetFirstThing(map, ThingDefOf.ThingRail) == null && loc.GetFirstThing(map, ThingDefOf.ThingPoweredRail) == null
             ? new AcceptanceReport("MGHU.NoRail".Translate())
             : AcceptanceReport.WasAccepted;
     }

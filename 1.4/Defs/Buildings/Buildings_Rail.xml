@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="BuildingBase">
-    <defName>ThingRail</defName>
-    <label>rail</label>
+  <ThingDef Name="ThingRailBase" Abstract="True" ParentName="BuildingBase">
+    <defName>Minecart Template</defName>
+    <label>Rail</label>
     <description>Common rails. Good for minecarts, but easy to trip over.</description>
     <pathCost>50</pathCost>
     <graphicData>
@@ -50,5 +50,37 @@
     <costList>
       <WoodLog>2</WoodLog>
     </costList>
+  </ThingDef>
+  
+  <ThingDef ParentName="ThingRailBase">
+	<defName>ThingRail</defName>
+  </ThingDef>
+  
+  <ThingDef ParentName="ThingRailBase">
+    <defName>ThingPoweredRail</defName>
+	<label>Powered Rail</label>
+    <description>Powered minecart rail. This will transmit electicity like a conduit. Good for rails with a lot of consecutive Rail Boosts.</description>
+	<graphicData>
+      <texPath>Things/Building/Rail/Rails/Rails_Powered</texPath>
+	</graphicData>
+	<uiIconPath>Things/Building/Rail/Rails/Rails_Powered_ScreenIcon</uiIconPath>
+	<building>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Rail/Rails/Rails_Blueprint_Powered</texPath>
+      </blueprintGraphicData>
+    </building>
+	<researchPrerequisites>
+      <li>P_IndustrialRails</li>
+    </researchPrerequisites>
+	<costList>
+		<WoodLog>2</WoodLog>
+		<Silver>2</Silver>
+	</costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTransmitter</compClass>
+        <transmitsPower>true</transmitsPower>
+      </li>
+    </comps>
   </ThingDef>
 </Defs>
