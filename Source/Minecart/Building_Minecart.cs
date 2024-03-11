@@ -429,6 +429,10 @@ public class Building_Minecart : Building
 
         if (railSwitch != null)
         {
+            if (railSwitch.AutoSwitch)
+            {
+                railSwitch.flickSwitch();
+            }
             if (railSwitch.GetComp<CompFlickable>().SwitchIsOn)
             {
                 if (isClear(Right, true))
