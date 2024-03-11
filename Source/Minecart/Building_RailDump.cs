@@ -144,12 +144,16 @@ public class Building_RailDump : Building
                                 vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
                         foreach (var validCell in validCells.ToList())
                         {
-                            if (validCell.GetFirstBuilding(Map) is Building_Storage storage)
+                            var buildings = validCell.GetThingList(Map).OfType<Building>().ToList();
+                            foreach (Building building in buildings)
                             {
-                                validCells.AddRange(storage.AllSlotCells());
-                                continue;
+                                var bstorage = building as Building_Storage;
+                                if (bstorage != null)
+                                {
+                                    validCells.AddRange(bstorage.AllSlotCells());
+                                    continue;
+                                }
                             }
-
                             if (validCell.GetZone(Map) is Zone_Stockpile stockpile)
                             {
                                 validCells.AddRange(stockpile.Cells.Where(vec3 =>
@@ -260,16 +264,23 @@ public class Building_RailDump : Building
             else
             {
                 //Is in load mode
-                var validCells = new HashSet<IntVec3>(CellRect
-                .CenteredOn(Position, 1).Where(vec3 =>
-                vec3.GetFirstBuilding(Map) is Building_Storage ||
-                vec3.GetZone(Map) is Zone_Stockpile
-                ));
-                foreach (var cell in validCells.ToList())
+                var allCells = new HashSet<IntVec3>(CellRect.CenteredOn(Position, 1));
+                var validCells = new HashSet<IntVec3>();
+                foreach (IntVec3 cell in allCells.ToList())
                 {
-                    if (cell.GetFirstBuilding(Map) is Building_Storage storage)
+                    var buildings = cell.GetThingList(Map).OfType<Building>().ToList();
+                    foreach (Building building in buildings)
                     {
-                        validCells.AddRange(storage.AllSlotCells());
+                        var storage = building as Building_Storage;
+                        if (storage != null)
+                        {
+                            validCells.AddRange(storage.AllSlotCells());
+                            continue;
+                        }
+                    }
+                    if (cell.GetZone(Map) is Zone_Stockpile)
+                    {
+                        validCells.Add(cell);
                     }
                 }
                     foreach (var cell in validCells)
