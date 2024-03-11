@@ -5,6 +5,8 @@ Rail dump in Load mode will take from all storage spaces, not just the cell in r
 Dump radius for Dump All mode will not increase with each placement attempt, instead increases when there are no valid cells in range.
 Added "Powered Rail" item as part of the industrial research tier. This rail acts like a conduit.
 Added "Auto Switch" toggle for rail switches.
+Fixed "Textures must be loaded in the main thread" warning
+Fixed Rail Dump ignoring storages which are on top of conduits (or other buildings)
 
 1.4.7 - Dumping will try to fill non-full stacks
 Range of dumping is now configurable

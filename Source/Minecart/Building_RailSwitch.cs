@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace Minecart;
@@ -9,7 +8,6 @@ namespace Minecart;
 public class Building_RailSwitch : Building
 {
     public bool AutoSwitch = false;
-    public static Texture2D AutoSwitch_UITexture = ContentFinder<Texture2D>.Get("UI/AutoSwitch_ScreenIcon");
 
     public void flickSwitch()
     {
@@ -49,7 +47,7 @@ public class Building_RailSwitch : Building
 
         yield return new Command_Toggle
             {
-                icon = AutoSwitch_UITexture,
+                icon = Textures.AutoSwitch_UI,
                 defaultLabel = "MGHU.AutoSwitch".Translate(),
                 defaultDesc = "MGHU.AutoSwitchDesc".Translate(),
                 isActive = () => AutoSwitch,
