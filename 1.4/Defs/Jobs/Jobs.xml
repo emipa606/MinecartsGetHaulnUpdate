@@ -1,9 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <JobDef>
-    <defName>LaunchCart</defName>
-    <driverClass>Minecart.JobDriver_LaunchCart</driverClass>
-    <reportString>Launching minecart.</reportString>
-    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-  </JobDef>
+	<JobDef>
+		<defName>LaunchCart</defName>
+		<driverClass>Minecart.JobDriver_LaunchCart</driverClass>
+		<reportString>Launching minecart.</reportString>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+	<WorkGiverDef>
+		<defName>WorkGiver_SwitchRailDirection</defName>
+		<label>Change rail direction</label>
+		<giverClass>Minecart.WorkGiver_SwitchRailDirection</giverClass>
+		<workType>BasicWorker</workType>
+		<verb>Change rail direction</verb>
+		<gerund>Changing rail direction</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+	<JobDef>
+		<defName>Job_SwitchRailDirection</defName>
+		<driverClass>Minecart.JobDriver_SwitchRailDirection</driverClass>
+		<reportString>Changing rail direction</reportString>
+	</JobDef>
 </Defs>
