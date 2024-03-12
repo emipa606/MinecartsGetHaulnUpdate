@@ -431,9 +431,9 @@ public class Building_Minecart : Building
         {
             if (railSwitch.AutoSwitch)
             {
-                railSwitch.flickSwitch();
+                railSwitch.ToggleDirection();
             }
-            if (railSwitch.GetComp<CompFlickable>().SwitchIsOn)
+            if (railSwitch.Direction)
             {
                 if (isClear(Right, true))
                 {
