@@ -244,10 +244,7 @@ public class Building_RailDump : Building
                                 }
                             }
 
-                            if (!cellsToTry.Any()) {
-                                radius++;
-                            }
-
+                            radius++;
                             if (radius > MinecartMod.instance.Settings.DropAllRange)
                             {
                                 break;
@@ -265,17 +262,22 @@ public class Building_RailDump : Building
             else
             {
                 //Is in load mode
-                //todo
-                var validCells = new HashSet<IntVec3>(CellRect
-                .CenteredOn(Position, 1).Where(vec3 =>
-                vec3.GetFirstBuilding(Map) is Building_Storage ||
-                vec3.GetZone(Map) is Zone_Stockpile
-                ));
-                foreach (var cell in validCells.ToList())
+                var allCells = new HashSet<IntVec3>(CellRect.CenteredOn(Position, 1));
+                var validCells = new HashSet<IntVec3>();
+                foreach (IntVec3 cell in allCells.ToList())
                 {
-                    if (cell.GetFirstBuilding(Map) is Building_Storage storage)
+                    var buildings = cell.GetThingList(Map).OfType<Building>().ToList();
+                    foreach (Building building in buildings)
                     {
-                        validCells.AddRange(storage.AllSlotCells());
+                        if (building is Building_Storage storage)
+                        {
+                            validCells.AddRange(storage.AllSlotCells());
+                            continue;
+                        }
+                    }
+                    if (cell.GetZone(Map) is Zone_Stockpile)
+                    {
+                        validCells.Add(cell);
                     }
                 }
                     foreach (var cell in validCells)
