@@ -355,7 +355,8 @@ public class Building_Minecart : Building
 
         if (cell.GetDoor(map) is not { } door || door.Open)
         {
-            return cell.GetFirstThing(map, def.railDef) != null || ignoreRails;
+            return cell.GetFirstThing(map, def.railDef) != null ||
+            cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
         }
 
         if (door.DoorPowerOn && !door.IsForbidden(Faction.OfPlayerSilentFail))
@@ -368,7 +369,8 @@ public class Building_Minecart : Building
             return false;
         }
 
-        return cell.GetFirstThing(map, def.railDef) != null || ignoreRails;
+        return cell.GetFirstThing(map, def.railDef) != null ||
+        cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
     }
 
     // Summary:
@@ -429,6 +431,10 @@ public class Building_Minecart : Building
 
         if (railSwitch != null)
         {
+            if (railSwitch.AutoSwitch)
+            {
+                railSwitch.FlickSwitch();
+            }
             if (railSwitch.GetComp<CompFlickable>().SwitchIsOn)
             {
                 if (isClear(Right, true))

@@ -144,10 +144,14 @@ public class Building_RailDump : Building
                                 vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
                         foreach (var validCell in validCells.ToList())
                         {
-                            if (validCell.GetFirstBuilding(Map) is Building_Storage storage)
+                            var buildings = validCell.GetThingList(Map).OfType<Building>().ToList();
+                            foreach (Building building in buildings)
                             {
-                                validCells.AddRange(storage.AllSlotCells());
-                                continue;
+                                if (building is Building_Storage bstorage)
+                                {
+                                    validCells.AddRange(bstorage.AllSlotCells());
+                                    continue;
+                                }
                             }
 
                             if (validCell.GetZone(Map) is Zone_Stockpile stockpile)
@@ -183,7 +187,7 @@ public class Building_RailDump : Building
 
                         var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
                                                                       thing.def.category == ThingCategory.Item &&
-                                                                      thing.def.EverHaulable) &&
+                                                                      !thing.def.EverHaulable) &&
                                                                   vec3.GetFirstBuilding(Map) == null &&
                                                                   vec3.GetZone(Map)?.GetType() !=
                                                                   typeof(Zone_Stockpile)).ToList();
@@ -240,7 +244,9 @@ public class Building_RailDump : Building
                                 }
                             }
 
-                            radius++;
+                            if (!cellsToTry.Any()) {
+                                radius++;
+                            }
 
                             if (radius > MinecartMod.instance.Settings.DropAllRange)
                             {
@@ -258,7 +264,21 @@ public class Building_RailDump : Building
             }
             else
             {
-                foreach (var cell in this.CellsAdjacent8WayAndInside())
+                //Is in load mode
+                //todo
+                var validCells = new HashSet<IntVec3>(CellRect
+                .CenteredOn(Position, 1).Where(vec3 =>
+                vec3.GetFirstBuilding(Map) is Building_Storage ||
+                vec3.GetZone(Map) is Zone_Stockpile
+                ));
+                foreach (var cell in validCells.ToList())
+                {
+                    if (cell.GetFirstBuilding(Map) is Building_Storage storage)
+                    {
+                        validCells.AddRange(storage.AllSlotCells());
+                    }
+                }
+                    foreach (var cell in validCells)
                 {
                     var currentMassLeft = compTransporter.Props.massCapacity -
                                           compTransporter.innerContainer.Sum(t =>

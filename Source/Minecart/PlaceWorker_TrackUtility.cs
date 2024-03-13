@@ -12,8 +12,11 @@ public class PlaceWorker_TrackUtility : PlaceWorker
             return new AcceptanceReport("MGHU.Blocked".Translate());
         }
 
-        return loc.GetFirstThing(map, ThingDefOf.ThingRail) == null
-            ? new AcceptanceReport("MGHU.NoRail".Translate())
-            : AcceptanceReport.WasAccepted;
+        return 
+            loc.GetFirstThing(map, ThingDefOf.ThingRail) == null &&
+            loc.GetFirstThing(map, ThingDefOf.ThingPoweredRail) == null &&
+            loc.GetFirstThing(map, ThingDefOf.ThingRail.blueprintDef) == null &&
+            loc.GetFirstThing(map, ThingDefOf.ThingPoweredRail.blueprintDef) == null ?
+        new AcceptanceReport("MGHU.NoRail".Translate()) : AcceptanceReport.WasAccepted;
     }
 }
