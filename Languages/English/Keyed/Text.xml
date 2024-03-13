@@ -10,6 +10,8 @@
   <MGHU.UseStorageDesc>Will only dump cargo in valid storage, if there are no free storage, cargo will remain in the cart</MGHU.UseStorageDesc>
   <MGHU.AutoLaunch>Auto Launch</MGHU.AutoLaunch>
   <MGHU.AutoLaunchDesc>When the last item is added to the cart, the loading pawn will automatically launch the cart</MGHU.AutoLaunchDesc>
+  <MGHU.AutoSwitch>Auto Switch</MGHU.AutoSwitch>
+  <MGHU.AutoSwitchDesc>Toggle the direction of the rail switch automatically after a minecart passes over it</MGHU.AutoSwitchDesc>
   <MGHU.Turn>Turn: </MGHU.Turn>
   <MGHU.Right>Right</MGHU.Right>
   <MGHU.Left>Left</MGHU.Left>
