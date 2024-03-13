@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef Name="ThingRailBase" Abstract="True" ParentName="BuildingBase">
-    <defName>Minecart Template</defName>
+    <defName>RailTemplate</defName>
     <label>Rail</label>
     <description>Common rails. Good for minecarts, but easy to trip over.</description>
     <pathCost>50</pathCost>

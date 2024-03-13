@@ -11,6 +11,8 @@
   <MGHU.AutoLaunch>Auto Launch</MGHU.AutoLaunch>
   <MGHU.AutoLaunchDesc>When the last item is added to the cart, the loading pawn will automatically launch the cart</MGHU.AutoLaunchDesc>
   <MGHU.AutoSwitch>Auto Switch</MGHU.AutoSwitch>
+  <MGHU.ToggleRailSwitch>Change Direction</MGHU.ToggleRailSwitch>
+  <MGHU.ToggleRailSwitchTT>Change the direction that the Rail Switch will send minecarts</MGHU.ToggleRailSwitchTT>
   <MGHU.AutoSwitchDesc>Toggle the direction of the rail switch automatically after a minecart passes over it</MGHU.AutoSwitchDesc>
   <MGHU.Turn>Turn: </MGHU.Turn>
   <MGHU.Right>Right</MGHU.Right>
@@ -24,7 +26,7 @@
   <MGHU.SpeedStat>Speed</MGHU.SpeedStat>
   <MGHU.Throttle>Throttle</MGHU.Throttle>
   <MGHU.ThrottleTT>Toggle minecart throttle</MGHU.ThrottleTT>
-  <MGHU.FlickingTo> (Flicking to {0}...)</MGHU.FlickingTo>
+  <MGHU.FlickingTo> (Flicking to the {0}...)</MGHU.FlickingTo>
   <MGHU.Launch>Launch</MGHU.Launch>
   <MGHU.Speed>Speed: {0}</MGHU.Speed>
   <MGHU.SpeedInspect>Speed: {0}c</MGHU.SpeedInspect>

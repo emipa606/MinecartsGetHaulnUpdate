@@ -12,7 +12,7 @@ public class Building_RailSwitch : Building
 
     public void FlickSwitch()
     {
-        var flickable = GetComp<CompFlickable>();
+        var flickable = GetComp<CompFlickableRailSwitch>();
         flickable.DoFlick();
         if (flickable.SwitchIsOn == true)
         {
@@ -25,7 +25,7 @@ public class Building_RailSwitch : Building
     }
     public override string GetInspectString()
     {
-        var flickable = GetComp<CompFlickable>();
+        var flickable = GetComp<CompFlickableRailSwitch>();
         var sb = new StringBuilder();
         sb.Append("MGHU.Turn".Translate());
         sb.Append(flickable.SwitchIsOn ? "MGHU.Right".Translate() : "MGHU.Left".Translate());
