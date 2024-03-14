@@ -240,10 +240,14 @@ public class Building_RailDump : Building
                                 {
                                     foreach (var cellToTry in cellsToTry)
                                     {
+                                    var thing = compTransporter.innerContainer.GetAt(index);
+                                    var roomleft = cellToTry.GetItemStackSpaceLeftFor(Map, thing.def);
+                                    if (roomleft <= 0 ){continue;}
+                                    var amountToPlace = thing.stackCount < roomleft ? thing.stackCount : roomleft;
                                         if (compTransporter.innerContainer.TryDrop(
                                                 compTransporter.innerContainer.GetAt(index), cellToTry, Map,
                                                 ThingPlaceMode.Direct,
-                                                compTransporter.innerContainer.GetAt(index).stackCount,
+                                                amountToPlace,
                                                 out _))
                                         {
                                             break;
