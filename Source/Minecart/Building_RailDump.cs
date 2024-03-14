@@ -204,8 +204,12 @@ public class Building_RailDump : Building
                                 foreach (var emptyCell in emptyCells)
                                 {
                                     var thing = compTransporter.innerContainer.GetAt(index);
+                                    var roomleft = emptyCell.GetItemStackSpaceLeftFor(Map, thing.def);
+                                    if (roomleft <= 0 ){continue;}
+                                    var amountToPlace = thing.stackCount < roomleft ? thing.stackCount : roomleft;
+
                                     if (compTransporter.innerContainer.TryDrop(thing, emptyCell, Map,
-                                            ThingPlaceMode.Direct, thing.stackCount, out _))
+                                            ThingPlaceMode.Direct, amountToPlace, out _))
                                     {
                                         break;
                                     }
