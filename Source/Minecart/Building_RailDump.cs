@@ -195,7 +195,7 @@ public class Building_RailDump : Building
                                                                   vec3.GetZone(Map)?.GetType() !=
                                                                   typeof(Zone_Stockpile)).ToList();
 
-                        Main.LogMessage($"RailDump Empty cells: {emptyCells.Count}");
+                        Main.LogMessage($"RailDump valid cells for free space mode: {emptyCells.Count}.");
 
                         if (emptyCells.Any())
                         {
@@ -232,36 +232,39 @@ public class Building_RailDump : Building
                                     vec3.GetRoom(Map) == currentRoom)
                                 .InRandomOrder()
                                 .ToList();
-                            Main.LogMessage($"RailDump tries dumping into {cellsToTry.Count} cells at radius {radius}");
+                            
 
                             if (cellsToTry.Any())
                             {
-                                for (var index = 0; index < compTransporter.innerContainer.Count; index++)
+                                Main.LogMessage($"RailDump tries dumping into {cellsToTry.Count} cells at radius {radius}.");
+                                foreach (var cellToTry in cellsToTry)
                                 {
-                                    var thing = compTransporter.innerContainer.GetAt(index);
-                                    foreach (var cellToTry in cellsToTry)
+                                   for (var index = 0; index < compTransporter.innerContainer.Count; index++)
                                     {
-                                    var roomleft = cellToTry.GetItemStackSpaceLeftFor(Map, thing.def);
-                                    if (roomleft <= 0 ){
-                                        continue; //Prevents error when dropping less than one item"
+                                        var thing = compTransporter.innerContainer.GetAt(index);
+                                        var roomleft = cellToTry.GetItemStackSpaceLeftFor(Map, thing.def);
+                                        if (roomleft <= 0 ){
+                                            continue;
                                         }
-                                    var amountToPlace = thing.stackCount < roomleft ? thing.stackCount : roomleft;
+                                        var amountToPlace = thing.stackCount <= roomleft ? thing.stackCount : roomleft;
                                         if (compTransporter.innerContainer.TryDrop(
-                                                compTransporter.innerContainer.GetAt(index), cellToTry, Map,
-                                                ThingPlaceMode.Direct,
-                                                amountToPlace,
-                                                out _))
+                                            compTransporter.innerContainer.GetAt(index), cellToTry, Map,
+                                            ThingPlaceMode.Direct,
+                                            amountToPlace,
+                                            out _))
                                         {
                                             break;
                                         }
                                     }
                                 }
                             }
-
+                            else {
+                                Main.LogMessage($"No valid cells to dump in. This is rare.");
+                            }
                             radius++;
                             if (radius > MinecartMod.instance.Settings.DropAllRange)
                             {
-                                Main.LogMessage($"Rail Dump {this} gave up searching");
+                                Main.LogMessage($"Rail Dump {this} gave up searching.");
                                 break;
                             }
                         }
