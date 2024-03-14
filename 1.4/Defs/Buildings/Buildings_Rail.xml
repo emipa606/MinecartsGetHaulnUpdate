@@ -39,6 +39,9 @@
       <isEdifice>false</isEdifice>
       <expandHomeArea>false</expandHomeArea>
     </building>
+    <placeWorkers>
+      <li>Minecart.PlaceWorker_Rails</li>
+    </placeWorkers>
     <fertility>0</fertility>
     <placingDraggableDimensions>1</placingDraggableDimensions>
     <rotatable>false</rotatable>

@@ -141,7 +141,8 @@ public class Building_RailDump : Building
                             .CenteredOn(Position, MinecartMod.instance.Settings.StorageRange).Where(vec3 =>
                                 vec3.InBounds(Map) && vec3 != Position &&
                                 vec3.GetRoom(Map) == currentRoom &&
-                                vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
+                                vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                                vec3.GetFirstThing(Map, ThingDefOf.ThingPoweredRail) == null));
                         foreach (var validCell in validCells.ToList())
                         {
                             var buildings = validCell.GetThingList(Map).OfType<Building>().ToList();
@@ -157,7 +158,8 @@ public class Building_RailDump : Building
                             if (validCell.GetZone(Map) is Zone_Stockpile stockpile)
                             {
                                 validCells.AddRange(stockpile.Cells.Where(vec3 =>
-                                    vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
+                                    vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                                    vec3.GetFirstThing(Map, ThingDefOf.ThingPoweredRail) == null));
                             }
                         }
 
@@ -183,7 +185,8 @@ public class Building_RailDump : Building
                             .CenteredOn(Position, MinecartMod.instance.Settings.FreeSpaceRange).Where(vec3 =>
                                 vec3.InBounds(Map) && vec3 != Position &&
                                 vec3.GetRoom(Map) == currentRoom &&
-                                vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null));
+                                vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                                vec3.GetFirstThing(Map, ThingDefOf.ThingPoweredRail) == null));
 
                         var emptyCells = validCells.Where(vec3 => !vec3.GetThingList(Map).Any(thing =>
                                                                       thing.def.category == ThingCategory.Item &&
@@ -219,6 +222,7 @@ public class Building_RailDump : Building
                             var rectToCheck = CellRect.CenteredOn(Position, radius);
                             var cellsToTry = rectToCheck.EdgeCells.Where(vec3 => vec3.InBounds(Map) &&
                                     vec3.GetFirstThing(Map, ThingDefOf.ThingRail) == null &&
+                                    vec3.GetFirstThing(Map, ThingDefOf.ThingPoweredRail) == null &&
                                     (vec3.GetFirstBuilding(Map) == null ||
                                      vec3.GetFirstBuilding(Map).CanBeSeenOver()) &&
                                     vec3.GetRoom(Map) == currentRoom)

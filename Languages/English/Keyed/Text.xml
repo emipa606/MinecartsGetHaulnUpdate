@@ -21,6 +21,7 @@
   <MGHU.Power>Power</MGHU.Power>
   <MGHU.Blocked>Blocked</MGHU.Blocked>
   <MGHU.NoRail>No rail</MGHU.NoRail>
+  <MGHU.RailAlreadyExists>A rail or rail blueprint already exists at that location</MGHU.RailAlreadyExists>
   <MGHU.TotalMass>Mass of loaded contents: {0}kg</MGHU.TotalMass>
   <MGHU.PathNotClear>Path not clear</MGHU.PathNotClear>
   <MGHU.SpeedStat>Speed</MGHU.SpeedStat>
