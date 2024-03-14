@@ -238,12 +238,18 @@ public class Building_RailDump : Building
                             {
                                 for (var index = 0; index < compTransporter.innerContainer.Count; index++)
                                 {
+                                    var thing = compTransporter.innerContainer.GetAt(index);
                                     foreach (var cellToTry in cellsToTry)
                                     {
+                                    var roomleft = cellToTry.GetItemStackSpaceLeftFor(Map, thing.def);
+                                    if (roomleft <= 0 ){
+                                        continue; //Prevents error when dropping less than one item"
+                                        }
+                                    var amountToPlace = thing.stackCount < roomleft ? thing.stackCount : roomleft;
                                         if (compTransporter.innerContainer.TryDrop(
                                                 compTransporter.innerContainer.GetAt(index), cellToTry, Map,
                                                 ThingPlaceMode.Direct,
-                                                compTransporter.innerContainer.GetAt(index).stackCount,
+                                                amountToPlace,
                                                 out _))
                                         {
                                             break;
@@ -255,6 +261,7 @@ public class Building_RailDump : Building
                             radius++;
                             if (radius > MinecartMod.instance.Settings.DropAllRange)
                             {
+                                Main.LogMessage($"Rail Dump {this} gave up searching");
                                 break;
                             }
                         }
