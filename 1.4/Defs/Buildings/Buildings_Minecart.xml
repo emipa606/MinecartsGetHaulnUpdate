@@ -41,6 +41,7 @@
     <launchSpeed>5.0</launchSpeed>
     <stuffCategories>
       <li>Metallic</li>
+      <li>Stony</li>
       <li>Woody</li>
     </stuffCategories>
     <costStuffCount>50</costStuffCount>
