@@ -118,6 +118,7 @@
       <isEdifice>false</isEdifice>
       <expandHomeArea>false</expandHomeArea>
     </building>
+    <resourcesFractionWhenDeconstructed>1</resourcesFractionWhenDeconstructed>
     <comps>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Power">
