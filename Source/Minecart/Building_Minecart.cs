@@ -428,10 +428,6 @@ public class Building_Minecart : Building
 
         if (railSwitch != null)
         {
-            if (railSwitch.AutoSwitch)
-            {
-                railSwitch.FlickSwitch();
-            }
             if (railSwitch.GetComp<CompFlickable>().SwitchIsOn)
             {
                 if (IsClear(Right, true))
@@ -459,6 +455,10 @@ public class Building_Minecart : Building
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Clockwise);
                 }
+            }
+            if (railSwitch.AutoSwitch)
+            {
+                railSwitch.FlickSwitch();
             }
         }
         else
