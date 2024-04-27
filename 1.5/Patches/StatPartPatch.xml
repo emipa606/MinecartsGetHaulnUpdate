@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[defName = "Mass"]/parts</xpath>
+    <value>
+      <li Class="Minecart.StatPart_StoredMass" />
+    </value>
+  </Operation>
+</Patch>

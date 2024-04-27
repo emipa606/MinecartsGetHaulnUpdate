@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>RoadsOfTheRim</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <RoadsOfTheRim.RoadBuildableDef>
+              <defName>Railway</defName>
+              <label>railway</label>
+              <movementCostMultiplier>0.5</movementCostMultiplier>
+              <roadDef>Railway</roadDef>
+              <biomeMovementDifficultyEffect>0</biomeMovementDifficultyEffect>
+              <work>600</work>
+              <wood>0</wood>
+              <stone>0</stone>
+              <steel>300</steel>
+              <chemfuel>0</chemfuel>
+            </RoadsOfTheRim.RoadBuildableDef>
+            <RoadDef>
+              <defName>Railway</defName>
+              <label>railway</label>
+              <priority>50</priority>
+              <ancientOnly>false</ancientOnly>
+              <movementCostMultiplier>1</movementCostMultiplier>
+              <tilesPerSegment>400</tilesPerSegment>
+              <pathingMode>Bulldoze</pathingMode>
+              <roadGenSteps>
+                <li Class="RoadDefGenStep_Bulldoze">
+                  <chancePerPositionCurve>
+                    <points>
+                      <li>(0, 1)</li>
+                      <li>(4, 1)</li>
+                      <li>(4, 0)</li>
+                    </points>
+                  </chancePerPositionCurve>
+                </li>
+                <li Class="RoadDefGenStep_Place">
+                  <chancePerPositionCurve>
+                    <points>
+                      <li>(1.0, 1)</li>
+                      <li>(1.0, 0)</li>
+                    </points>
+                  </chancePerPositionCurve>
+                  <place>Bridge</place>
+                  <antialiasingMultiplier>0</antialiasingMultiplier>
+                  <onlyIfOriginAllows>true</onlyIfOriginAllows>
+                </li>
+                <li Class="RoadDefGenStep_Place">
+                  <chancePerPositionCurve>
+                    <points>
+                      <li>(0, 0.8)</li>
+                      <li>(1.0, 0.8)</li>
+                      <li>(1.0, 0)</li>
+                    </points>
+                  </chancePerPositionCurve>
+                  <suppressOnTerrainTag>Water</suppressOnTerrainTag>
+                  <antialiasingMultiplier>0</antialiasingMultiplier>
+                  <place>Rail</place>
+                </li>
+              </roadGenSteps>
+              <worldRenderSteps>
+                <li>
+                  <layer>Outline</layer>
+                  <width>0.4</width>
+                </li>
+                <li>
+                  <layer>Gravel</layer>
+                  <width>0.2</width>
+                </li>
+                <li>
+                  <layer>Asphalt</layer>
+                  <width>0.15</width>
+                </li>
+              </worldRenderSteps>
+            </RoadDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/RoadDef[defName="Railway"]/modExtensions</xpath>
+          <value>
+            <li Class="RoadsOfTheRim.DefModExtension_RotR_RoadDef">
+              <built>true</built>
+              <biomeModifier>0</biomeModifier>
+              <hillinessModifier>0</hillinessModifier>
+              <winterModifier>0</winterModifier>
+              <costs>
+                <work>600</work>
+                <steel>300</steel>
+              </costs>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

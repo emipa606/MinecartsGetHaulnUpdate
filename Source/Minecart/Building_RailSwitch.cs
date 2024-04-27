@@ -1,28 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using RimWorld;
 using Verse;
-using UnityEngine;
 
 namespace Minecart;
 
 public class Building_RailSwitch : Building
 {
-    public bool AutoSwitch = false;
+    public bool AutoSwitch;
 
     public void FlickSwitch()
     {
         var flickable = GetComp<CompFlickableRailSwitch>();
         flickable.DoFlick();
-        if (flickable.SwitchIsOn == true)
-        {
-            flickable.wantSwitchOn = true;
-        }
-        else
-        {
-            flickable.wantSwitchOn = false;
-        }
+        flickable.wantSwitchOn = flickable.SwitchIsOn;
     }
+
     public override string GetInspectString()
     {
         var flickable = GetComp<CompFlickableRailSwitch>();
@@ -38,7 +30,8 @@ public class Building_RailSwitch : Building
 
         return sb.ToString();
     }
-        // Gizmos
+
+    // Gizmos
     public override IEnumerable<Gizmo> GetGizmos()
     {
         foreach (var gizmo in base.GetGizmos())
@@ -47,13 +40,13 @@ public class Building_RailSwitch : Building
         }
 
         yield return new Command_Toggle
-            {
-                icon = Textures.AutoSwitch_UI,
-                defaultLabel = "MGHU.AutoSwitch".Translate(),
-                defaultDesc = "MGHU.AutoSwitchDesc".Translate(),
-                isActive = () => AutoSwitch,
-                toggleAction = delegate { AutoSwitch = !AutoSwitch; }
-            };
+        {
+            icon = Textures.AutoSwitch_UI,
+            defaultLabel = "MGHU.AutoSwitch".Translate(),
+            defaultDesc = "MGHU.AutoSwitchDesc".Translate(),
+            isActive = () => AutoSwitch,
+            toggleAction = delegate { AutoSwitch = !AutoSwitch; }
+        };
 
         if (!Prefs.DevMode)
         {
@@ -62,9 +55,9 @@ public class Building_RailSwitch : Building
 
         yield return new Command_Action
         {
-            action = () => FlickSwitch(),
-            defaultLabel = "Flick Now",
-            defaultDesc = "Flick the switch immediately"
+            action = FlickSwitch,
+            defaultLabel = "MGHU.FlickNow".Translate(),
+            defaultDesc = "MGHU.FlickNowTT".Translate()
         };
     }
 }

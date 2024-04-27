@@ -76,11 +76,12 @@ public class Building_Minecart : Building
     private IntVec3 Right => Position + Rotation.Rotated(RotationDirection.Clockwise).FacingCell;
     private IntVec3 Left => Position + Rotation.Rotated(RotationDirection.Counterclockwise).FacingCell;
 
-    public override void Draw()
-    {
-        DrawAt(DrawPos);
-        base.Draw();
-    }
+    //public override void DrawAt(Vector3 drawLoc, bool flip = false)
+    //{
+    //    DrawAt(drawLoc);
+    //    base.DrawAt(drawLoc, flip);
+    //    base.Draw();
+    //}
 
     public override void Print(SectionLayer layer)
     {
@@ -196,7 +197,7 @@ public class Building_Minecart : Building
         }
 
         yield return new FloatMenuOption("MGHU.LaunchTT".Translate(), () => selPawn.jobs.StartJob(
-            new Job(JobDefOf.LaunchCart,
+            new Job(DefOfs.LaunchCart,
                 new LocalTargetInfo(this))));
     }
 
@@ -353,7 +354,7 @@ public class Building_Minecart : Building
         if (cell.GetDoor(map) is not { } door || door.Open)
         {
             return cell.GetFirstThing(map, def.railDef) != null ||
-            cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
+                   cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
         }
 
         if (door.DoorPowerOn && !door.IsForbidden(Faction.OfPlayerSilentFail))
@@ -367,7 +368,7 @@ public class Building_Minecart : Building
         }
 
         return cell.GetFirstThing(map, def.railDef) != null ||
-        cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
+               cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
     }
 
     // Summary:
@@ -456,6 +457,7 @@ public class Building_Minecart : Building
                     Rotation = Rotation.Rotated(RotationDirection.Clockwise);
                 }
             }
+
             if (railSwitch.AutoSwitch)
             {
                 railSwitch.FlickSwitch();

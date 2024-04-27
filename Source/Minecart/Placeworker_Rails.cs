@@ -1,5 +1,4 @@
 using Verse;
-using RimWorld;
 
 namespace Minecart;
 
@@ -13,11 +12,12 @@ public class PlaceWorker_Rails : PlaceWorker
             return new AcceptanceReport("MGHU.Blocked".Translate());
         }
 
-        return 
-            loc.GetFirstThing(map, ThingDefOf.ThingRail) == null &&
-            loc.GetFirstThing(map, ThingDefOf.ThingPoweredRail) == null &&
-            loc.GetFirstThing(map, ThingDefOf.ThingRail.blueprintDef) == null &&
-            loc.GetFirstThing(map, ThingDefOf.ThingPoweredRail.blueprintDef) == null ?
-        AcceptanceReport.WasAccepted : new AcceptanceReport("MGHU.RailAlreadyExists".Translate());
+        return
+            loc.GetFirstThing(map, DefOfs.ThingRail) == null &&
+            loc.GetFirstThing(map, DefOfs.ThingPoweredRail) == null &&
+            loc.GetFirstThing(map, DefOfs.ThingRail.blueprintDef) == null &&
+            loc.GetFirstThing(map, DefOfs.ThingPoweredRail.blueprintDef) == null
+                ? AcceptanceReport.WasAccepted
+                : new AcceptanceReport("MGHU.RailAlreadyExists".Translate());
     }
 }

@@ -31,7 +31,7 @@
       <expandHomeArea>false</expandHomeArea>
     </building>
     <comps>
-      <li Class="CompProperties_Flickable" />
+      <li Class="Minecart.CompProperties_FlickableRailSwitch" />
     </comps>
     <placeWorkers>
       <li>Minecart.PlaceWorker_TrackUtility</li>
@@ -118,6 +118,7 @@
       <isEdifice>false</isEdifice>
       <expandHomeArea>false</expandHomeArea>
     </building>
+    <resourcesFractionWhenDeconstructed>1</resourcesFractionWhenDeconstructed>
     <comps>
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Power">

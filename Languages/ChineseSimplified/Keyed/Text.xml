@@ -38,4 +38,11 @@
   <MGHU.VerboseLogging>冗长日志记录</MGHU.VerboseLogging>
   <MGHU.CurrentModVersion>已安装模块版本：{0}</MGHU.CurrentModVersion>
   <MGHU.Reset>重置</MGHU.Reset>
+  <MGHU.AutoSwitch>自动开关</MGHU.AutoSwitch>
+  <MGHU.ToggleRailSwitch>改变方向</MGHU.ToggleRailSwitch>
+  <MGHU.ToggleRailSwitchTT>更改轨道开关发送矿车的方向</MGHU.ToggleRailSwitchTT>
+  <MGHU.AutoSwitchDesc>在矿车经过时自动切换轨道开关的方向</MGHU.AutoSwitchDesc>
+  <MGHU.RailAlreadyExists>该地点已有铁路或铁路蓝图</MGHU.RailAlreadyExists>
+  <MGHU.FlickNow>立即播放</MGHU.FlickNow>
+  <MGHU.FlickNowTT>立即打开开关</MGHU.FlickNowTT>
 </LanguageData>

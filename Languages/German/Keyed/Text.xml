@@ -38,4 +38,11 @@
   <MGHU.VerboseLogging>Ausführliche Protokollierung</MGHU.VerboseLogging>
   <MGHU.CurrentModVersion>Installierte Mod-Version: {0}</MGHU.CurrentModVersion>
   <MGHU.Reset>Zurücksetzen</MGHU.Reset>
+  <MGHU.AutoSwitch>Automatischer Schalter</MGHU.AutoSwitch>
+  <MGHU.ToggleRailSwitch>Richtungswechsel</MGHU.ToggleRailSwitch>
+  <MGHU.ToggleRailSwitchTT>Ändern Sie die Richtung, in die der Rail Switch Minenkarren schickt</MGHU.ToggleRailSwitchTT>
+  <MGHU.AutoSwitchDesc>Die Richtung der Weiche wird automatisch umgeschaltet, wenn ein Minenwagen sie überfährt.</MGHU.AutoSwitchDesc>
+  <MGHU.RailAlreadyExists>An diesem Standort existiert bereits ein Schienen- oder Schienenplan</MGHU.RailAlreadyExists>
+  <MGHU.FlickNow>Jetzt filmen</MGHU.FlickNow>
+  <MGHU.FlickNowTT>Sofort den Schalter betätigen</MGHU.FlickNowTT>
 </LanguageData>

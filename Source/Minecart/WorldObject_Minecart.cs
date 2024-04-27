@@ -70,7 +70,7 @@ public class WorldObject_Minecart : WorldObject
             var map = mapParent.Map;
             foreach (var c in CellRect.WholeMap(map).ContractedBy(GenGrid.NoBuildEdgeWidth).EdgeCells)
             {
-                if (c.GetTerrain(map).defName != "Rail")
+                if (c.GetTerrain(map).defName.Contains("Rail"))
                 {
                     continue;
                 }

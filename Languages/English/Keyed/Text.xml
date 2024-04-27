@@ -42,4 +42,6 @@
   <MGHU.VerboseLogging>Verbose logging</MGHU.VerboseLogging>
   <MGHU.CurrentModVersion>Installed mod-version: {0}</MGHU.CurrentModVersion>
   <MGHU.Reset>Reset</MGHU.Reset>
+  <MGHU.FlickNow>Flick Now</MGHU.FlickNow>
+  <MGHU.FlickNowTT>Flick the switch immediately</MGHU.FlickNowTT>
 </LanguageData>

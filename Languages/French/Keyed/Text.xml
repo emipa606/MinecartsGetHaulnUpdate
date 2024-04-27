@@ -38,4 +38,11 @@
   <MGHU.VerboseLogging>Journalisation verbeuse</MGHU.VerboseLogging>
   <MGHU.CurrentModVersion>Version installée du mod : {0}</MGHU.CurrentModVersion>
   <MGHU.Reset>Remise à zéro</MGHU.Reset>
+  <MGHU.AutoSwitch>Interrupteur automatique</MGHU.AutoSwitch>
+  <MGHU.ToggleRailSwitch>Changement de direction</MGHU.ToggleRailSwitch>
+  <MGHU.ToggleRailSwitchTT>Modifier la direction dans laquelle l'aiguillage ferroviaire enverra les chariots de mine</MGHU.ToggleRailSwitchTT>
+  <MGHU.AutoSwitchDesc>Basculer automatiquement la direction de l'aiguillage ferroviaire après le passage d'un chariot de mine.</MGHU.AutoSwitchDesc>
+  <MGHU.RailAlreadyExists>Un chemin de fer ou un projet de chemin de fer existe déjà à cet endroit</MGHU.RailAlreadyExists>
+  <MGHU.FlickNow>Flick Now</MGHU.FlickNow>
+  <MGHU.FlickNowTT>Actionner l'interrupteur immédiatement</MGHU.FlickNowTT>
 </LanguageData>
