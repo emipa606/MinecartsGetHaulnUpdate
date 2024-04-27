@@ -7,7 +7,7 @@ public class Building_RailBoost : Building
 {
     public ThingDef_RailBoost Def => def as ThingDef_RailBoost;
 
-    public bool isActive()
+    public bool IsActive()
     {
         var flickable = GetComp<CompFlickable>();
         var power = GetComp<CompPowerTrader>();
@@ -22,7 +22,7 @@ public class Building_RailBoost : Building
             return;
         }
 
-        if (isActive())
+        if (IsActive())
         {
             minecart.Push(Def.pushSpeed, Def.pushAccel, Def.pushPower);
         }

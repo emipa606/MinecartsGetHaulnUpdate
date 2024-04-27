@@ -7,4 +7,5 @@ namespace Minecart;
 public static class ThingDefOf
 {
     public static ThingDef ThingRail;
+    public static ThingDef ThingPoweredRail;
 }

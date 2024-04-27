@@ -27,10 +27,7 @@ public class Building_Minecart : Building
     {
         get
         {
-            if (cartTransporter == null)
-            {
-                cartTransporter = GetComp<CompTransporter>();
-            }
+            cartTransporter ??= GetComp<CompTransporter>();
 
             return cartTransporter;
         }
@@ -38,24 +35,24 @@ public class Building_Minecart : Building
 
     public float Subtile
     {
-        get => headMinecart.subtile;
-        set => headMinecart.subtile = value;
+        get => HeadMinecart.subtile;
+        set => HeadMinecart.subtile = value;
     }
 
     public float Speed
     {
-        get => headMinecart.speed;
-        set => headMinecart.speed = value;
+        get => HeadMinecart.speed;
+        set => HeadMinecart.speed = value;
     }
 
     // Queriable
-    public Building_Minecart headMinecart => leadingMinecart == null ? this : leadingMinecart.headMinecart;
+    public Building_Minecart HeadMinecart => leadingMinecart == null ? this : leadingMinecart.HeadMinecart;
 
-    public List<Building_Minecart> train
+    public List<Building_Minecart> Train
     {
         get
         {
-            var minecarts = new List<Building_Minecart> { headMinecart };
+            var minecarts = new List<Building_Minecart> { HeadMinecart };
             while (true)
             {
                 if (minecarts.Last().trailingMinecart == null)
@@ -184,7 +181,7 @@ public class Building_Minecart : Building
 
         yield return new Command_Action
         {
-            action = () => headMinecart.Launch(),
+            action = () => HeadMinecart.Launch(),
             defaultLabel = "MGHU.Launch".Translate(),
             defaultDesc = "MGHU.LaunchTT".Translate()
         };
@@ -274,16 +271,16 @@ public class Building_Minecart : Building
                     }
                 }
 
-                if (isClear(Forward))
+                if (IsClear(Forward))
                 {
                     subtile += speed / GenTicks.TicksPerRealSecond;
                     speed *= Def.frictionCoef;
                 }
-                else if (isClear(Right, true) && !isClear(Left, true))
+                else if (IsClear(Right, true) && !IsClear(Left, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Clockwise);
                 }
-                else if (isClear(Left, true) && !isClear(Right, true))
+                else if (IsClear(Left, true) && !IsClear(Right, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Counterclockwise);
                 }
@@ -300,7 +297,7 @@ public class Building_Minecart : Building
                     return;
                 }
 
-                doRailStep();
+                DoRailStep();
 
                 /* if (Forward.InNoBuildEdgeArea(Map))
                         {
@@ -340,12 +337,12 @@ public class Building_Minecart : Building
     }
 
     // Clearance
-    private bool isClear(IntVec3 cell, bool ignoreMinecarts = false, bool ignoreRails = false)
+    private bool IsClear(IntVec3 cell, bool ignoreMinecarts = false, bool ignoreRails = false)
     {
-        return isClear(cell, Map, Def, ignoreMinecarts, ignoreRails);
+        return IsClear(cell, Map, Def, ignoreMinecarts, ignoreRails);
     }
 
-    public static bool isClear(IntVec3 cell, Map map, ThingDef_Minecart def, bool ignoreMinecarts = false,
+    public static bool IsClear(IntVec3 cell, Map map, ThingDef_Minecart def, bool ignoreMinecarts = false,
         bool ignoreRails = false)
     {
         if (!cell.Standable(map) && (!ignoreMinecarts || cell.GetFirstThing<Building_Minecart>(map) == null))
@@ -355,7 +352,8 @@ public class Building_Minecart : Building
 
         if (cell.GetDoor(map) is not { } door || door.Open)
         {
-            return cell.GetFirstThing(map, def.railDef) != null || ignoreRails;
+            return cell.GetFirstThing(map, def.railDef) != null ||
+            cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
         }
 
         if (door.DoorPowerOn && !door.IsForbidden(Faction.OfPlayerSilentFail))
@@ -368,7 +366,8 @@ public class Building_Minecart : Building
             return false;
         }
 
-        return cell.GetFirstThing(map, def.railDef) != null || ignoreRails;
+        return cell.GetFirstThing(map, def.railDef) != null ||
+        cell.GetFirstThing(map, def.railPoweredDef) != null || ignoreRails;
     }
 
     // Summary:
@@ -383,7 +382,7 @@ public class Building_Minecart : Building
     //  Instantly sets the minecarts speed to the default launch speed
     public void Launch()
     {
-        if (trailingMinecart == null && leadingMinecart == null && !isClear(Position + Rotation.FacingCell))
+        if (trailingMinecart == null && leadingMinecart == null && !IsClear(Position + Rotation.FacingCell))
         {
             Rotation = Rotation.Opposite;
         }
@@ -400,7 +399,7 @@ public class Building_Minecart : Building
     //  Instantly sets the minecarts speed to the parameters launch speed
     public void Launch(float launchSpeed)
     {
-        if (trailingMinecart == null && leadingMinecart == null && !isClear(Position + Rotation.FacingCell))
+        if (trailingMinecart == null && leadingMinecart == null && !IsClear(Position + Rotation.FacingCell))
         {
             Rotation = Rotation.Opposite;
         }
@@ -409,7 +408,7 @@ public class Building_Minecart : Building
     }
 
     // Rail step
-    private void doRailStep()
+    private void DoRailStep()
     {
         foreach (var thing in Forward.GetThingList(Map).ToList())
         {
@@ -420,7 +419,7 @@ public class Building_Minecart : Building
             }
         }
 
-        if (isClear(Forward, true))
+        if (IsClear(Forward, true))
         {
             Position = Forward;
         }
@@ -431,43 +430,47 @@ public class Building_Minecart : Building
         {
             if (railSwitch.GetComp<CompFlickable>().SwitchIsOn)
             {
-                if (isClear(Right, true))
+                if (IsClear(Right, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Clockwise);
                 }
-                else if (isClear(Forward, true))
+                else if (IsClear(Forward, true))
                 {
                 }
-                else if (isClear(Left, true))
+                else if (IsClear(Left, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Counterclockwise);
                 }
             }
             else
             {
-                if (isClear(Left, true))
+                if (IsClear(Left, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Counterclockwise);
                 }
-                else if (isClear(Forward, true))
+                else if (IsClear(Forward, true))
                 {
                 }
-                else if (isClear(Right, true))
+                else if (IsClear(Right, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Clockwise);
                 }
             }
+            if (railSwitch.AutoSwitch)
+            {
+                railSwitch.FlickSwitch();
+            }
         }
         else
         {
-            if (isClear(Forward, true))
+            if (IsClear(Forward, true))
             {
             }
-            else if (isClear(Right, true) && !isClear(Left, true))
+            else if (IsClear(Right, true) && !IsClear(Left, true))
             {
                 Rotation = Rotation.Rotated(RotationDirection.Clockwise);
             }
-            else if (isClear(Left, true) && !isClear(Right, true))
+            else if (IsClear(Left, true) && !IsClear(Right, true))
             {
                 Rotation = Rotation.Rotated(RotationDirection.Counterclockwise);
             }
