@@ -9,9 +9,9 @@ namespace Minecart;
 
 public class WorldObject_Minecart : WorldObject
 {
-    public float direction;
-    public List<Building_Minecart> minecarts;
-    public int NextTile;
+    private float direction;
+    private List<Building_Minecart> minecarts;
+    private int NextTile;
 
     private float tileProgress;
 
@@ -23,7 +23,7 @@ public class WorldObject_Minecart : WorldObject
 
     public override void PostAdd()
     {
-        var neighbors = new List<int>();
+        var neighbors = new List<PlanetTile>();
         Find.WorldGrid.GetTileNeighbors(Tile, neighbors);
         neighbors.RemoveAll(t => Find.WorldGrid.GetRoadDef(Tile, t) == null);
         if (neighbors.Count > 0)
@@ -84,7 +84,7 @@ public class WorldObject_Minecart : WorldObject
         }
 
 
-        var neighbors = new List<int>();
+        var neighbors = new List<PlanetTile>();
         Find.WorldGrid.GetTileNeighbors(Tile, neighbors);
         neighbors.RemoveAll(t => Find.WorldGrid.GetRoadDef(Tile, t) == null);
         if (neighbors.Count > 0)

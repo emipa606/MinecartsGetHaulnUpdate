@@ -14,14 +14,14 @@ public class Building_Minecart : Building
 
     private CompTransporter cartTransporter;
     private bool isLoading;
-    public Building_Minecart leadingMinecart;
-    public float recursiveMass = 1;
+    private Building_Minecart leadingMinecart;
+    private float recursiveMass = 1;
 
     private float speed;
 
     // Public values
     private float subtile;
-    public Building_Minecart trailingMinecart;
+    private Building_Minecart trailingMinecart;
 
     public CompTransporter CartTransporter
     {
@@ -42,11 +42,11 @@ public class Building_Minecart : Building
     public float Speed
     {
         get => HeadMinecart.speed;
-        set => HeadMinecart.speed = value;
+        private set => HeadMinecart.speed = value;
     }
 
     // Queriable
-    public Building_Minecart HeadMinecart => leadingMinecart == null ? this : leadingMinecart.HeadMinecart;
+    private Building_Minecart HeadMinecart => leadingMinecart == null ? this : leadingMinecart.HeadMinecart;
 
     public List<Building_Minecart> Train
     {
@@ -68,7 +68,7 @@ public class Building_Minecart : Building
     }
 
     // Miscellaneous overrides
-    public ThingDef_Minecart Def => def as BuildableDef as ThingDef_Minecart;
+    private ThingDef_Minecart Def => def as BuildableDef as ThingDef_Minecart;
 
     public override Vector3 DrawPos => (Rotation.FacingCell.ToVector3() * subtile) + this.TrueCenter();
 
@@ -300,18 +300,6 @@ public class Building_Minecart : Building
 
                 DoRailStep();
 
-                /* if (Forward.InNoBuildEdgeArea(Map))
-                        {
-                            WorldObject_Minecart worldObject = new WorldObject_Minecart();
-                            worldObject.def = WorldObjectDefOf.MinecartCaravan;
-                            worldObject.Tile = Map.Tile;
-                            worldObject.minecarts = train;
-                            worldObject.direction = Rotation.AsAngle;
-                            Find.WorldObjects.Add(worldObject);
-                            foreach(Thing thing in train)
-                                thing.DeSpawn();
-                        }
-                        else */
                 subtile--;
             }
             else

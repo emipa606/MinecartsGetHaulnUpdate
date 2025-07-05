@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: minecart -->
+  <Minecart.label>minecart</Minecart.label>
+  <!-- EN: A lightweight track vehicle which can be loaded with items, colonists and animals for transportation around a colony. Must be placed atop tracks to function. -->
+  <Minecart.description>A lightweight track vehicle which can be loaded with items, colonists and animals for transportation around a colony. Must be placed atop tracks to function.</Minecart.description>
+</LanguageData>

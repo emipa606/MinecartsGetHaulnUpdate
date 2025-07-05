@@ -6,7 +6,7 @@ public static class Main
 {
     public static void LogMessage(string message)
     {
-        if (MinecartMod.instance.Settings.VerboseLogging)
+        if (MinecartMod.Instance.Settings.VerboseLogging)
         {
             Log.Message($"[Minecarts]: {message}");
         }

@@ -5,9 +5,9 @@ namespace Minecart;
 
 public class Building_RailBoost : Building
 {
-    public ThingDef_RailBoost Def => def as ThingDef_RailBoost;
+    private ThingDef_RailBoost Def => def as ThingDef_RailBoost;
 
-    public bool IsActive()
+    private bool IsActive()
     {
         var flickable = GetComp<CompFlickable>();
         var power = GetComp<CompPowerTrader>();

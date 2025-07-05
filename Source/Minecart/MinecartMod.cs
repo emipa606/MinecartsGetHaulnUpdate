@@ -10,7 +10,7 @@ internal class MinecartMod : Mod
     /// <summary>
     ///     The instance of the settings to be read by the mod
     /// </summary>
-    public static MinecartMod instance;
+    public static MinecartMod Instance;
 
     private static string currentVersion;
 
@@ -20,7 +20,7 @@ internal class MinecartMod : Mod
     /// <param name="content"></param>
     public MinecartMod(ModContentPack content) : base(content)
     {
-        instance = this;
+        Instance = this;
         Settings = GetSettings<MinecartSettings>();
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
@@ -46,55 +46,55 @@ internal class MinecartMod : Mod
     /// <param name="rect"></param>
     public override void DoSettingsWindowContents(Rect rect)
     {
-        var listing_Standard = new Listing_Standard();
-        listing_Standard.Begin(rect);
-        listing_Standard.Gap();
-        listing_Standard.Label("MGHU.DropAllRange".Translate(Settings.DropAllRange), -1,
+        var listingStandard = new Listing_Standard();
+        listingStandard.Begin(rect);
+        listingStandard.Gap();
+        listingStandard.Label("MGHU.DropAllRange".Translate(Settings.DropAllRange), -1,
             "MGHU.DropAllRangeTT".Translate());
-        listing_Standard.IntAdjuster(ref Settings.DropAllRange, 1, 1);
+        listingStandard.IntAdjuster(ref Settings.DropAllRange, 1, 1);
         if (Settings.DropAllRange > 20)
         {
             Settings.DropAllRange = 20;
         }
 
-        listing_Standard.Gap();
+        listingStandard.Gap();
 
-        listing_Standard.Label("MGHU.FreeSpaceRange".Translate(Settings.FreeSpaceRange), -1,
+        listingStandard.Label("MGHU.FreeSpaceRange".Translate(Settings.FreeSpaceRange), -1,
             "MGHU.FreeSpaceRangeTT".Translate());
-        listing_Standard.IntAdjuster(ref Settings.FreeSpaceRange, 1, 1);
+        listingStandard.IntAdjuster(ref Settings.FreeSpaceRange, 1, 1);
         if (Settings.FreeSpaceRange > 20)
         {
             Settings.FreeSpaceRange = 20;
         }
 
-        listing_Standard.Gap();
+        listingStandard.Gap();
 
-        listing_Standard.Label("MGHU.StorageRange".Translate(Settings.StorageRange), -1,
+        listingStandard.Label("MGHU.StorageRange".Translate(Settings.StorageRange), -1,
             "MGHU.StorageRangeTT".Translate());
-        listing_Standard.IntAdjuster(ref Settings.StorageRange, 1, 1);
+        listingStandard.IntAdjuster(ref Settings.StorageRange, 1, 1);
         if (Settings.StorageRange > 20)
         {
             Settings.StorageRange = 20;
         }
 
-        listing_Standard.Gap();
-        var resetPlace = listing_Standard.GetRect(25f);
+        listingStandard.Gap();
+        var resetPlace = listingStandard.GetRect(25f);
         if (Widgets.ButtonText(resetPlace.RightHalf().RightHalf().RightHalf(), "MGHU.Reset".Translate()))
         {
             Settings.Reset();
         }
 
-        listing_Standard.Gap();
-        listing_Standard.CheckboxLabeled("MGHU.VerboseLogging".Translate(), ref Settings.VerboseLogging);
+        listingStandard.Gap();
+        listingStandard.CheckboxLabeled("MGHU.VerboseLogging".Translate(), ref Settings.VerboseLogging);
 
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("MGHU.CurrentModVersion".Translate(currentVersion));
+            listingStandard.Label("MGHU.CurrentModVersion".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
+        listingStandard.End();
     }
 }

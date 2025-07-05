@@ -10,11 +10,11 @@ public class CompMinecartPropulsion : ThingComp
 {
     private Texture2D cachedCommandTex;
 
-    public bool Throttle { get; set; }
+    private bool Throttle { get; set; }
 
-    public CompProperties_MinecartPropulsion Props => props as CompProperties_MinecartPropulsion;
+    private CompProperties_MinecartPropulsion Props => props as CompProperties_MinecartPropulsion;
 
-    public Building_Minecart Parent => parent as Building_Minecart;
+    private Building_Minecart Parent => parent as Building_Minecart;
 
     private Texture2D CommandTex
     {
@@ -82,8 +82,7 @@ public class CompMinecartPropulsion : ThingComp
         {
             refuelable.Refuel(
             [
-                transporter.innerContainer.First(
-                    t => refuelable.Props.fuelFilter.Allows(t))
+                transporter.innerContainer.First(t => refuelable.Props.fuelFilter.Allows(t))
             ]);
         }
     }

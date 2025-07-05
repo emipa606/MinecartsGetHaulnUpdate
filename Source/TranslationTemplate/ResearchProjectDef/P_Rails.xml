@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Industrial Rail Systems -->
+  <P_IndustrialRails.label>Industrial Rail Systems</P_IndustrialRails.label>
+  <!-- EN: Simple powered upgrades to improve the efficiency of a rail network. -->
+  <P_IndustrialRails.description>Simple powered upgrades to improve the efficiency of a rail network.</P_IndustrialRails.description>
+  <!-- EN: Early Rail Systems -->
+  <P_MedievalRails.label>Early Rail Systems</P_MedievalRails.label>
+  <!-- EN: Early pre-industrial railway systems. -->
+  <P_MedievalRails.description>Early pre-industrial railway systems.</P_MedievalRails.description>
+</LanguageData>

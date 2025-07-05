@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 1543586756
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4365b3153247a86c9e0333b48375bf0b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 4365b3153247a86c9e0333b48375bf0b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/SteamMinecart/minecart_southm.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Minecart/minecart_east.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/SteamMinecart/minecart_eastm.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails_Powered_ScreenIcon.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails_ScreenIcon.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Minecart/minecart_north.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/UI/RailDirectionRight.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/UI/RailDirectionLeft.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/UpdateInfo/MinecartsGetHaulnUpdate.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/SteamMinecart/minecart_east.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/UI/AutoSwitch_ScreenIcon.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/SteamMinecart/minecart_north.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/SteamMinecart/minecart_south.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Minecart/minecart_south.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails_Blueprint.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails_Overlay.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/SteamMinecart/minecart_northm.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails_Blueprint_Powered.png
+- Assets/Data/Mlie.MinecartsGetHaulnUpdate/Textures/Things/Building/Rail/Rails/Rails_Powered.png
+Dependencies: []

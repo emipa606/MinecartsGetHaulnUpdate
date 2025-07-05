@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Powered Rail -->
+  <ThingPoweredRail.label>Powered Rail</ThingPoweredRail.label>
+  <!-- EN: Powered minecart rail. This will transmit electicity like a conduit. Good for rails with a lot of consecutive Rail Boosts. -->
+  <ThingPoweredRail.description>Powered minecart rail. This will transmit electicity like a conduit. Good for rails with a lot of consecutive Rail Boosts.</ThingPoweredRail.description>
+  <!-- EN: Rail -->
+  <ThingRail.label>Rail</ThingRail.label>
+  <!-- EN: Common rails. Good for minecarts, but easy to trip over. -->
+  <ThingRail.description>Common rails. Good for minecarts, but easy to trip over.</ThingRail.description>
+</LanguageData>

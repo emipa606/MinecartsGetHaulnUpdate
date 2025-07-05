@@ -10,19 +10,19 @@ public class CompFlickableRailSwitch : CompFlickable
     //new private CompProperties_FlickableRailSwitch Props => (CompProperties_FlickableRailSwitch)props;
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        bool IconShouldFaceRight;
+        bool iconShouldFaceRight;
         if (SwitchIsOn && !WantsFlick() || !SwitchIsOn && WantsFlick())
         {
-            IconShouldFaceRight = true;
+            iconShouldFaceRight = true;
         }
         else
         {
-            IconShouldFaceRight = false;
+            iconShouldFaceRight = false;
         }
 
         yield return new Command_Toggle
         {
-            icon = IconShouldFaceRight ? Textures.RailDirectionRight : Textures.RailDirectionLeft,
+            icon = iconShouldFaceRight ? Textures.RailDirectionRight : Textures.RailDirectionLeft,
             defaultLabel = "MGHU.ToggleRailSwitch".Translate(),
             defaultDesc = "MGHU.ToggleRailSwitchTT".Translate(),
             isActive = () => !WantsFlick(),

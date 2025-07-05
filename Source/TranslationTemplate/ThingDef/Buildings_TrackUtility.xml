@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: rail boost -->
+  <RailBoost.label>rail boost</RailBoost.label>
+  <!-- EN: Spinning flywheels that latch onto a passing rail vehicle to accelerate them to full speed again. -->
+  <RailBoost.description>Spinning flywheels that latch onto a passing rail vehicle to accelerate them to full speed again.</RailBoost.description>
+  <!-- EN: rail dump -->
+  <RailDump.label>rail dump</RailDump.label>
+  <!-- EN: A point which causes passing track vehicles to eject their cargo immediately. -->
+  <RailDump.description>A point which causes passing track vehicles to eject their cargo immediately.</RailDump.description>
+  <!-- EN: rail switch -->
+  <RailSwitch.label>rail switch</RailSwitch.label>
+  <!-- EN: A switch which changes the direction of incoming track vehicles. -->
+  <RailSwitch.description>A switch which changes the direction of incoming track vehicles.</RailSwitch.description>
+</LanguageData>

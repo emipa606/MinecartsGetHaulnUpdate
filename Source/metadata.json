@@ -2,5 +2,16 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "2",
-  "PreviewVersion": "1.5"
+  "PreviewVersion": "1.6",
+  "LastXmlCleaning": "2025-07-05T22:38:04.5092355+02:00",
+  "SocialImageSet": true,
+  "Patches": true,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 50825.0,
+  "LinesOfXML": 20460.0,
+  "SearchTags": [
+    " hauling",
+    " transportation"
+  ]
 }

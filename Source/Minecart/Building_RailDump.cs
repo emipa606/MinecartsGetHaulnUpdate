@@ -14,13 +14,13 @@ public class Building_RailDump : Building
     private bool mode = true;
     private bool storages;
 
-    public bool IsInDumpMode
+    private bool IsInDumpMode
     {
         get => mode;
         set => mode = value;
     }
 
-    public bool WillDumpWhereever
+    private bool WillDumpWhereever
     {
         get => dumpMode;
         set
@@ -36,7 +36,7 @@ public class Building_RailDump : Building
         }
     }
 
-    public bool WillDumpOnFreeSpots
+    private bool WillDumpOnFreeSpots
     {
         get
         {
@@ -60,7 +60,7 @@ public class Building_RailDump : Building
         }
     }
 
-    public bool WillDumpInStorages
+    private bool WillDumpInStorages
     {
         get => storages;
         set
@@ -138,7 +138,7 @@ public class Building_RailDump : Building
 
                     {
                         var validCells = new HashSet<IntVec3>(CellRect
-                            .CenteredOn(Position, MinecartMod.instance.Settings.StorageRange).Where(vec3 =>
+                            .CenteredOn(Position, MinecartMod.Instance.Settings.StorageRange).Where(vec3 =>
                                 vec3.InBounds(Map) && vec3 != Position &&
                                 vec3.GetRoom(Map) == currentRoom &&
                                 vec3.GetFirstThing(Map, DefOfs.ThingRail) == null &&
@@ -165,8 +165,8 @@ public class Building_RailDump : Building
                         for (var i = 0; i < compTransporter.innerContainer.Count; i++)
                         {
                             var thing = compTransporter.innerContainer.GetAt(i);
-                            foreach (var validStorageCell in validCells.Where(
-                                         vec3 => vec3.IsValidStorageFor(Map, thing)))
+                            foreach (var validStorageCell in
+                                     validCells.Where(vec3 => vec3.IsValidStorageFor(Map, thing)))
                             {
                                 if (compTransporter.innerContainer.TryDrop(thing, validStorageCell, Map,
                                         ThingPlaceMode.Direct, thing.stackCount, out _))
@@ -181,7 +181,7 @@ public class Building_RailDump : Building
                     if (WillDumpOnFreeSpots || WillDumpWhereever)
                     {
                         var validCells = new HashSet<IntVec3>(CellRect
-                            .CenteredOn(Position, MinecartMod.instance.Settings.FreeSpaceRange).Where(vec3 =>
+                            .CenteredOn(Position, MinecartMod.Instance.Settings.FreeSpaceRange).Where(vec3 =>
                                 vec3.InBounds(Map) && vec3 != Position &&
                                 vec3.GetRoom(Map) == currentRoom &&
                                 vec3.GetFirstThing(Map, DefOfs.ThingRail) == null &&
@@ -262,7 +262,7 @@ public class Building_RailDump : Building
                             }
 
                             radius++;
-                            if (radius <= MinecartMod.instance.Settings.DropAllRange)
+                            if (radius <= MinecartMod.Instance.Settings.DropAllRange)
                             {
                                 continue;
                             }
