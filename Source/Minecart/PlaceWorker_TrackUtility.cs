@@ -4,7 +4,7 @@ namespace Minecart;
 
 public class PlaceWorker_TrackUtility : PlaceWorker
 {
-    public override AcceptanceReport AllowsPlacing(BuildableDef bcheckingDef, IntVec3 loc, Rot4 rot, Map map,
+    public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map,
         Thing thingToIgnore = null, Thing thing = null)
     {
         if (loc.Impassable(map))

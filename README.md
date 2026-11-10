@@ -1,12 +1,12 @@
 # [Minecarts - Get Haul'n Update (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2998019751)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Compilatron,Ogliss,Parad0xs mod https://steamcommunity.com/sharedfiles/filedetails/?id=2540895973
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 Move stuff from A to B with minecarts! Currently an early build, I hope to add more features and improvements later.
 	
@@ -28,13 +28,13 @@ Credits to Compilatron for allowing this and original creation of the mod.
 
 Free for anyone to update, take over or otherwise maintain.
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -42,4 +42,4 @@ Free for anyone to update, take over or otherwise maintain.
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/MinecartsGetHaulnUpdate?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2998019751) | tags:  hauling,  transportation
+[![Image](https://img.shields.io/github/v/release/emipa606/MinecartsGetHaulnUpdate?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2998019751) | hauling, transportation

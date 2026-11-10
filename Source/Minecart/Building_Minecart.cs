@@ -55,12 +55,12 @@ public class Building_Minecart : Building
             var minecarts = new List<Building_Minecart> { HeadMinecart };
             while (true)
             {
-                if (minecarts.Last().trailingMinecart == null)
+                if (minecarts[^1].trailingMinecart == null)
                 {
                     break;
                 }
 
-                minecarts.Add(minecarts.Last().trailingMinecart);
+                minecarts.Add(minecarts[^1].trailingMinecart);
             }
 
             return minecarts;
@@ -75,13 +75,6 @@ public class Building_Minecart : Building
     private IntVec3 Forward => Position + Rotation.FacingCell;
     private IntVec3 Right => Position + Rotation.Rotated(RotationDirection.Clockwise).FacingCell;
     private IntVec3 Left => Position + Rotation.Rotated(RotationDirection.Counterclockwise).FacingCell;
-
-    //public override void DrawAt(Vector3 drawLoc, bool flip = false)
-    //{
-    //    DrawAt(drawLoc);
-    //    base.DrawAt(drawLoc, flip);
-    //    base.Draw();
-    //}
 
     public override void Print(SectionLayer layer)
     {
@@ -399,13 +392,10 @@ public class Building_Minecart : Building
     // Rail step
     private void DoRailStep()
     {
-        foreach (var thing in Forward.GetThingList(Map).ToList())
+        foreach (var thing in Forward.GetThingList(Map).Where(thing => thing.Faction.HostileTo(Faction)).ToList())
         {
-            if (thing.Faction.HostileTo(Faction))
-            {
-                thing.TakeDamage(new DamageInfo(DamageDefOf.Blunt,
-                    Speed * recursiveMass, instigator: this));
-            }
+            thing.TakeDamage(new DamageInfo(DamageDefOf.Blunt,
+                Speed * recursiveMass, instigator: this));
         }
 
         if (IsClear(Forward, true))
@@ -423,9 +413,6 @@ public class Building_Minecart : Building
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Clockwise);
                 }
-                else if (IsClear(Forward, true))
-                {
-                }
                 else if (IsClear(Left, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Counterclockwise);
@@ -436,9 +423,6 @@ public class Building_Minecart : Building
                 if (IsClear(Left, true))
                 {
                     Rotation = Rotation.Rotated(RotationDirection.Counterclockwise);
-                }
-                else if (IsClear(Forward, true))
-                {
                 }
                 else if (IsClear(Right, true))
                 {
@@ -453,10 +437,7 @@ public class Building_Minecart : Building
         }
         else
         {
-            if (IsClear(Forward, true))
-            {
-            }
-            else if (IsClear(Right, true) && !IsClear(Left, true))
+            if (IsClear(Right, true) && !IsClear(Left, true))
             {
                 Rotation = Rotation.Rotated(RotationDirection.Clockwise);
             }

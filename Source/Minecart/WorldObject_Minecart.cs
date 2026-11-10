@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using RimWorld.Planet;
 using UnityEngine;
@@ -9,9 +10,9 @@ namespace Minecart;
 
 public class WorldObject_Minecart : WorldObject
 {
+    private int NextTile;
     private float direction;
     private List<Building_Minecart> minecarts;
-    private int NextTile;
 
     private float tileProgress;
 

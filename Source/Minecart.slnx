@@ -3,4 +3,36 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Minecart/Minecart.csproj" />
+  <Folder Name="/.github/">
+    <File Path="../.github/copilot-instructions.md" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Text.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Jobs/">
+    <File Path="../1.7/Defs/Jobs/Jobs.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Terrain/">
+    <File Path="../1.7/Defs/Terrain/Terrain.xml" />
+    <File Path="../1.7/Defs/Terrain/World.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/">
+    <File Path="../1.7/Defs/DesignationCategories.xml" />
+    <File Path="../1.7/Defs/UpdateInfo.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/ResearchProjectDefs/">
+    <File Path="../1.7/Defs/ResearchProjectDefs/P_Rails.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Patches/">
+    <File Path="../1.7/Patches/RoadsOfTheRimPatch.xml" />
+    <File Path="../1.7/Patches/StatPartPatch.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Buildings/">
+    <File Path="../1.7/Defs/Buildings/Buildings_Minecart.xml" />
+    <File Path="../1.7/Defs/Buildings/Buildings_Rail.xml" />
+    <File Path="../1.7/Defs/Buildings/Buildings_TrackUtility.xml" />
+  </Folder>
 </Solution>

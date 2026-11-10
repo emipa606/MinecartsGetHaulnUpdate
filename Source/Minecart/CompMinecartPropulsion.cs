@@ -8,8 +8,6 @@ namespace Minecart;
 
 public class CompMinecartPropulsion : ThingComp
 {
-    private Texture2D cachedCommandTex;
-
     private bool Throttle { get; set; }
 
     private CompProperties_MinecartPropulsion Props => props as CompProperties_MinecartPropulsion;
@@ -20,12 +18,12 @@ public class CompMinecartPropulsion : ThingComp
     {
         get
         {
-            if (cachedCommandTex == null)
+            if (field == null)
             {
-                cachedCommandTex = ContentFinder<Texture2D>.Get("UI/Commands/DesirePower");
+                field = ContentFinder<Texture2D>.Get("UI/Commands/DesirePower");
             }
 
-            return cachedCommandTex;
+            return field;
         }
     }
 

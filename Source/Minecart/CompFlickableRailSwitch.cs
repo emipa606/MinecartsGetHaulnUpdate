@@ -7,7 +7,6 @@ namespace Minecart;
 [StaticConstructorOnStartup]
 public class CompFlickableRailSwitch : CompFlickable
 {
-    //new private CompProperties_FlickableRailSwitch Props => (CompProperties_FlickableRailSwitch)props;
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
         bool iconShouldFaceRight;

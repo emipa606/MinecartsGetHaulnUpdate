@@ -4,10 +4,10 @@ namespace Minecart;
 
 public class PlaceWorker_Minecart : PlaceWorker
 {
-    public override AcceptanceReport AllowsPlacing(BuildableDef bcheckingDef, IntVec3 loc, Rot4 rot, Map map,
+    public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Map map,
         Thing thingToIgnore = null, Thing thing = null)
     {
-        var def = bcheckingDef as ThingDef_Minecart;
+        var def = checkingDef as ThingDef_Minecart;
         if (!Building_Minecart.IsClear(loc, map, def, ignoreRails: true))
         {
             return new AcceptanceReport("MGHU.Blocked".Translate());
